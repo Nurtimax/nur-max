@@ -1,0 +1,7 @@
+{
+  "name": "nur-max",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
