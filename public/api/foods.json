@@ -1,0 +1,214 @@
+{
+  "list": [
+    {
+      "day": 1,
+      "breakfast": "Сулу боткосу",
+      "lunch": "Плов",
+      "dinner": "Салат",
+      "fruit": "Алма"
+    },
+    {
+      "day": 2,
+      "breakfast": "Гречка",
+      "lunch": "Манты",
+      "dinner": "Йогурт",
+      "fruit": "Банан"
+    },
+    {
+      "day": 3,
+      "breakfast": "Омлет",
+      "lunch": "Сложный гарнир",
+      "dinner": "Салат",
+      "fruit": "Апельсин"
+    },
+    {
+      "day": 4,
+      "breakfast": "Сулу боткосу",
+      "lunch": "Печень с рисом",
+      "dinner": "Компот",
+      "fruit": "Киви"
+    },
+    {
+      "day": 5,
+      "breakfast": "Гречка",
+      "lunch": "Бешбармак",
+      "dinner": "Салат",
+      "fruit": "Алма"
+    },
+    {
+      "day": 6,
+      "breakfast": "Омлет",
+      "lunch": "Куурдак",
+      "dinner": "Йогурт",
+      "fruit": "Банан"
+    },
+    {
+      "day": 7,
+      "breakfast": "Сулу боткосу",
+      "lunch": "Лагман",
+      "dinner": "Салат",
+      "fruit": "Апельсин"
+    },
+    {
+      "day": 8,
+      "breakfast": "Гречка",
+      "lunch": "Шорпо",
+      "dinner": "Компот",
+      "fruit": "Киви"
+    },
+    {
+      "day": 9,
+      "breakfast": "Омлет",
+      "lunch": "Ормо",
+      "dinner": "Салат",
+      "fruit": "Алма"
+    },
+    {
+      "day": 10,
+      "breakfast": "Сулу боткосу",
+      "lunch": "Плов",
+      "dinner": "Йогурт",
+      "fruit": "Банан"
+    },
+    {
+      "day": 11,
+      "breakfast": "Гречка",
+      "lunch": "Манты",
+      "dinner": "Салат",
+      "fruit": "Апельсин"
+    },
+    {
+      "day": 12,
+      "breakfast": "Омлет",
+      "lunch": "Сложный гарнир",
+      "dinner": "Компот",
+      "fruit": "Киви"
+    },
+    {
+      "day": 13,
+      "breakfast": "Сулу боткосу",
+      "lunch": "Печень с рисом",
+      "dinner": "Салат",
+      "fruit": "Алма"
+    },
+    {
+      "day": 14,
+      "breakfast": "Гречка",
+      "lunch": "Бешбармак",
+      "dinner": "Йогурт",
+      "fruit": "Банан"
+    },
+    {
+      "day": 15,
+      "breakfast": "Омлет",
+      "lunch": "Куурдак",
+      "dinner": "Салат",
+      "fruit": "Апельсин"
+    },
+    {
+      "day": 16,
+      "breakfast": "Сулу боткосу",
+      "lunch": "Лагман",
+      "dinner": "Компот",
+      "fruit": "Киви"
+    },
+    {
+      "day": 17,
+      "breakfast": "Гречка",
+      "lunch": "Шорпо",
+      "dinner": "Салат",
+      "fruit": "Алма"
+    },
+    {
+      "day": 18,
+      "breakfast": "Омлет",
+      "lunch": "Ормо",
+      "dinner": "Йогурт",
+      "fruit": "Банан"
+    },
+    {
+      "day": 19,
+      "breakfast": "Сулу боткосу",
+      "lunch": "Плов",
+      "dinner": "Салат",
+      "fruit": "Апельсин"
+    },
+    {
+      "day": 20,
+      "breakfast": "Гречка",
+      "lunch": "Манты",
+      "dinner": "Компот",
+      "fruit": "Киви"
+    },
+    {
+      "day": 21,
+      "breakfast": "Омлет",
+      "lunch": "Сложный гарнир",
+      "dinner": "Салат",
+      "fruit": "Алма"
+    },
+    {
+      "day": 22,
+      "breakfast": "Сулу боткосу",
+      "lunch": "Печень с рисом",
+      "dinner": "Йогурт",
+      "fruit": "Банан"
+    },
+    {
+      "day": 23,
+      "breakfast": "Гречка",
+      "lunch": "Бешбармак",
+      "dinner": "Салат",
+      "fruit": "Апельсин"
+    },
+    {
+      "day": 24,
+      "breakfast": "Омлет",
+      "lunch": "Куурдак",
+      "dinner": "Компот",
+      "fruit": "Киви"
+    },
+    {
+      "day": 25,
+      "breakfast": "Сулу боткосу",
+      "lunch": "Лагман",
+      "dinner": "Салат",
+      "fruit": "Алма"
+    },
+    {
+      "day": 26,
+      "breakfast": "Гречка",
+      "lunch": "Шорпо",
+      "dinner": "Йогурт",
+      "fruit": "Банан"
+    },
+    {
+      "day": 27,
+      "breakfast": "Омлет",
+      "lunch": "Ормо",
+      "dinner": "Салат",
+      "fruit": "Апельсин"
+    },
+    {
+      "day": 28,
+      "breakfast": "Сулу боткосу",
+      "lunch": "Плов",
+      "dinner": "Компот",
+      "fruit": "Киви"
+    },
+    {
+      "day": 29,
+      "breakfast": "Гречка",
+      "lunch": "Манты",
+      "dinner": "Салат",
+      "fruit": "Алма"
+    },
+    {
+      "day": 30,
+      "breakfast": "Омлет",
+      "lunch": "Сложный гарнир",
+      "dinner": "Йогурт",
+      "fruit": "Банан"
+    }
+  ]
+}
