@@ -1,9 +1,13 @@
-import { IonCardSubtitle, IonContent } from "@ionic/react";
+import { IonContent } from "@ionic/react";
+import ContentTitle from "./ContentTitle";
 import { useQuery } from "@tanstack/react-query";
 import { getFoods } from "../../../query/foods.query";
-import HomeMealList from "./MealList";
+import MealCard from "../../../components/meals/MealCard";
 
 const HomeContent = () => {
+  const now = new Date();
+  const day = now.getDate();
+
   const { data } = useQuery({
     queryKey: ["foods"],
     queryFn: getFoods,
@@ -11,13 +15,17 @@ const HomeContent = () => {
     retry: 2,
   });
 
-  return (
-    <IonContent className="" fullscreen>
-      <div className="ion-padding-horizontal ion-padding-top">
-        <IonCardSubtitle>🍽 30 күндүк тамактануу планы</IonCardSubtitle>
-      </div>
+  const list = data?.list || [];
 
-      <HomeMealList list={data?.list} />
+  const findFood = list.find((food) => food.day === day);
+
+  console.log(findFood);
+
+  return (
+    <IonContent fullscreen>
+      <ContentTitle />
+
+      {findFood && <MealCard data={findFood} />}
     </IonContent>
   );
 };

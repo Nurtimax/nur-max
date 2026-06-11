@@ -1,0 +1,7 @@
+.ionItem {
+  --padding-start: 0;
+}
+
+.ionLabel {
+  margin-inline-start: 0.5rem !important;
+}
