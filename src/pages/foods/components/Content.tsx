@@ -1,4 +1,4 @@
-import { IonCardSubtitle, IonContent } from "@ionic/react";
+import { IonCardSubtitle, IonContent, IonToolbar } from "@ionic/react";
 import HomeMealList from "../../../components/meals/MealList";
 import { useFoodsStore } from "../../../store/foods.store";
 
@@ -7,6 +7,7 @@ const FoodsContent = () => {
 
   return (
     <IonContent>
+      <IonToolbar />
       <div className="ion-padding-horizontal ion-padding-top">
         <IonCardSubtitle>🍽 30 күндүк тамактануу планы</IonCardSubtitle>
       </div>

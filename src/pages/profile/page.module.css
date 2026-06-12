@@ -1,13 +1,26 @@
 .profileContainer {
+  height: 30%;
+
+  background: var(--ion-color-light) !important;
+}
+
+.avatarBackgroundContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 30%;
+  height: 100%;
+  width: 100%;
 
   position: relative;
+}
 
+.toolbar {
   background: var(--ion-color-light) !important;
+  border: none !important;
+  --border-color: transparent !important;
+  box-shadow: none !important;
+  position: absolute !important;
 }
 
 .avatar {
@@ -39,4 +52,12 @@
   object-position: center;
   filter: blur(3px);
   -webkit-filter: blur(3px);
+}
+
+.profileContentForm {
+  padding: 0 1rem;
+  height: 40vh;
+
+  display: flex;
+  align-items: center;
 }

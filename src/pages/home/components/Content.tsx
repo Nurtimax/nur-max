@@ -1,4 +1,4 @@
-import { IonContent } from "@ionic/react";
+import { IonContent, IonToolbar } from "@ionic/react";
 import ContentTitle from "./ContentTitle";
 import MealCard from "../../../components/meals/MealCard";
 import { useFoodsStore } from "../../../store/foods.store";
@@ -13,7 +13,7 @@ const HomeContent = () => {
   const findFood = foods.find((food) => food.day === day);
 
   const toggleFoodsComplete = useFoodsStore(
-    (state) => state.toggleFoodsComplete,
+    (state) => state.toggleFoodsComplete
   );
 
   const updateComplete = (data: MealDay, action: IMealAction) => {
@@ -22,6 +22,7 @@ const HomeContent = () => {
 
   return (
     <IonContent fullscreen>
+      <IonToolbar />
       <ContentTitle />
 
       {findFood && <MealCard data={findFood} updateComplete={updateComplete} />}

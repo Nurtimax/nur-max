@@ -12,3 +12,8 @@ ion-input {
   -ms-border-radius: 8px !important;
   -o-border-radius: 8px !important;
 }
+
+ion-toolbar {
+  --background: transparent !important;
+  --border-color: transparent !important;
+}
