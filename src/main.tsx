@@ -2,20 +2,14 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 
-declare global {
-  interface Window {
-    Telegram: {
-      WebApp: {
-        expand: () => void;
-        // add other WebApp properties you need here
-      };
-    };
-  }
-}
+const data = JSON.stringify({
+  eventType: "web_app_setup_back_button",
+  eventData: {
+    is_visible: true,
+  },
+});
 
-const app = window.Telegram?.WebApp;
-
-app?.expand();
+window.parent.postMessage(data, "https://web.telegram.org");
 
 const container = document.getElementById("root");
 const root = createRoot(container!);
