@@ -32,6 +32,6 @@ root.render(
 //   // ИЛИ если нужен именно raw postMessage:
 // }
 const data = JSON.stringify({
-  eventType: "web_app_exit_fullscreen",
+  eventType: "web_app_request_fullscreen",
 });
 window.parent.postMessage(data, "https://web.telegram.org");
