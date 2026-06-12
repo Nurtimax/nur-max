@@ -1,4 +1,4 @@
-import { IonContent } from "@ionic/react";
+import { IonButton, IonContent } from "@ionic/react";
 import ContentTitle from "./ContentTitle";
 import MealCard from "../../../components/meals/MealCard";
 import { useFoodsStore } from "../../../store/foods.store";
@@ -20,9 +20,17 @@ const HomeContent = () => {
     toggleFoodsComplete(data.day, action.key);
   };
 
+  const handleOpen = () => {
+    console.log("Open button clicked");
+    console.log("👆 Кнопка нажата");
+    window.Telegram?.WebApp?.requestFullscreen();
+  };
+
   return (
     <IonContent fullscreen>
       <ContentTitle />
+
+      <IonButton onClick={handleOpen}>Open</IonButton>
 
       {findFood && <MealCard data={findFood} updateComplete={updateComplete} />}
     </IonContent>

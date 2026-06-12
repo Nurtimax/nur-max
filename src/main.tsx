@@ -31,7 +31,19 @@ root.render(
 
 //   // ИЛИ если нужен именно raw postMessage:
 // }
+// Прослушиваем все postMessage сообщения
+
+window.addEventListener("message", (event) => {
+  console.log("📨 Получено сообщение:", event.data);
+  console.log("📌 Отправитель:", event.origin);
+});
+
+// Ваш код
 const data = JSON.stringify({
   eventType: "web_app_request_fullscreen",
 });
-window.parent.postMessage(data, "https://web.telegram.org");
+
+if (window.parent !== window) {
+  window.parent.postMessage(data, "https://web.telegram.org");
+  console.log("✅ Сообщение отправлено");
+}
