@@ -2,6 +2,7 @@ import { IonButton, IonInput, useIonToast } from "@ionic/react";
 import { useFormik } from "formik";
 import classes from "../page.module.css";
 import { User, useUserStore } from "../../../store/user.store";
+import { backspace } from "ionicons/icons";
 
 const ProfileContentForm = () => {
   const setUser = useUserStore((state) => state.setUser);
@@ -33,6 +34,8 @@ const ProfileContentForm = () => {
         onIonChange={formik.handleChange}
         debounce={300}
         type="text"
+        clearInput
+        clearInputIcon={backspace}
       />
       <IonInput
         name="email"
@@ -42,6 +45,8 @@ const ProfileContentForm = () => {
         debounce={300}
         onIonChange={formik.handleChange}
         type="email"
+        clearInput
+        clearInputIcon={backspace}
       />
       <IonInput
         name="photoUrl"
@@ -51,6 +56,8 @@ const ProfileContentForm = () => {
         placeholder="Photo URL"
         debounce={300}
         type="url"
+        clearInput
+        clearInputIcon={backspace}
       />
 
       <IonButton type="submit" color="success" disabled={!formik.dirty}>
