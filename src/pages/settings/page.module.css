@@ -15,7 +15,39 @@
   height: 90%;
   width: 100%;
 
-  display: grid;
-  align-items: flex-end;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list {
+  /*--margin: 0 !important;
+  */
+  margin: 0 !important;
+  padding: 1rem 0.5rem 0 !important;
+  width: 100% !important;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  -ms-border-radius: 0 !important;
+  -o-border-radius: 0 !important;
+}
+
+.item {
+  border: 1px solid rgb(66, 66, 66) !important;
+  border-radius: 8px !important;
+  background: rgb(48, 48, 48) !important;
+  -webkit-border-radius: 8px !important;
+  -moz-border-radius: 8px !important;
+  -ms-border-radius: 8px !important;
+  -o-border-radius: 8px !important;
+
+  --background: var(--ion-color-light) !important;
+  margin-top: 0.75rem;
+}
+
+.item ion-label {
+  padding: 0.5rem 0;
 }

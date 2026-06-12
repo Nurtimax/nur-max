@@ -5,7 +5,7 @@ const InitializingContent = () => {
   return (
     <div className={classes.content}>
       <div className={classes.wrapper}>
-        <IonSpinner name="circular"></IonSpinner>
+        <IonSpinner name="circular" color="dark"></IonSpinner>
       </div>
       <div className={classes.text}>
         <div className={classes.root}>
