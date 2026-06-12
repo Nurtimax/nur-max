@@ -23,15 +23,15 @@ root.render(
 );
 
 // После рендера, когда WebApp точно инициализирован
-if (window.Telegram?.WebApp) {
-  window.Telegram.WebApp.ready?.(); // Сообщаем, что приложение готово
+// if (window.Telegram?.WebApp) {
+//   window.Telegram.WebApp.ready?.(); // Сообщаем, что приложение готово
 
-  // Лучше использовать SDK вместо raw postMessage
-  window.Telegram.WebApp.exitFullscreen?.();
+//   // Лучше использовать SDK вместо raw postMessage
+//   window.Telegram.WebApp.exitFullscreen?.();
 
-  // ИЛИ если нужен именно raw postMessage:
-  // const data = JSON.stringify({
-  //   eventType: "web_app_exit_fullscreen"
-  // });
-  // window.parent.postMessage(data, "https://web.telegram.org");
-}
+//   // ИЛИ если нужен именно raw postMessage:
+// }
+const data = JSON.stringify({
+  eventType: "web_app_exit_fullscreen",
+});
+window.parent.postMessage(data, "https://web.telegram.org");
