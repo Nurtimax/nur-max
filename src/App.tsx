@@ -32,6 +32,7 @@ import "./theme/variables.css";
 import AppRouters from "./routes";
 import QueryProvider from "./providers/QueryProvider";
 import InitializingProvider from "./providers/InitializingProvider";
+import FoodProvider from "./providers/FoodProvider";
 
 setupIonicReact({ mode: "ios", backButtonText: "Назад" });
 
@@ -39,7 +40,9 @@ const App: React.FC = () => (
   <IonApp>
     <QueryProvider>
       <InitializingProvider>
-        <AppRouters />
+        <FoodProvider>
+          <AppRouters />
+        </FoodProvider>
       </InitializingProvider>
     </QueryProvider>
   </IonApp>

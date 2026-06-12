@@ -16,8 +16,9 @@ export interface MealPlanData {
   list: MealDay[];
 }
 
+export type MealActionKey = keyof Omit<MealDay, "day">;
 export interface IMealAction {
-  key: keyof Omit<MealDay, "day">;
+  key: MealActionKey;
   title: string;
   icon: string;
   color: string;

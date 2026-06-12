@@ -1,7 +1,17 @@
 import { IonContent } from "@ionic/react";
+import ProfileContentForm from "./ContentForm";
+import ProfileContentAvatar from "./ContentAvatar";
 
 const ProfileContent = () => {
-  return <IonContent className="ion-padding">ProfileContent</IonContent>;
+  return (
+    <IonContent>
+      <ProfileContentAvatar />
+
+      <div className="ion-padding">
+        <ProfileContentForm />
+      </div>
+    </IonContent>
+  );
 };
 
 export default ProfileContent;

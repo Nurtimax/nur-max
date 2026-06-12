@@ -1,31 +1,30 @@
 import { IonContent } from "@ionic/react";
 import ContentTitle from "./ContentTitle";
-import { useQuery } from "@tanstack/react-query";
-import { getFoods } from "../../../query/foods.query";
 import MealCard from "../../../components/meals/MealCard";
+import { useFoodsStore } from "../../../store/foods.store";
+import { IMealAction, MealDay } from "../../../@types/meal.types";
 
 const HomeContent = () => {
   const now = new Date();
   const day = now.getDate();
 
-  const { data } = useQuery({
-    queryKey: ["foods"],
-    queryFn: getFoods,
-    initialData: null,
-    retry: 2,
-  });
+  const foods = useFoodsStore((state) => state.foods);
 
-  const list = data?.list || [];
+  const findFood = foods.find((food) => food.day === day);
 
-  const findFood = list.find((food) => food.day === day);
+  const toggleFoodsComplete = useFoodsStore(
+    (state) => state.toggleFoodsComplete,
+  );
 
-  console.log(findFood);
+  const updateComplete = (data: MealDay, action: IMealAction) => {
+    toggleFoodsComplete(data.day, action.key);
+  };
 
   return (
     <IonContent fullscreen>
       <ContentTitle />
 
-      {findFood && <MealCard data={findFood} />}
+      {findFood && <MealCard data={findFood} updateComplete={updateComplete} />}
     </IonContent>
   );
 };

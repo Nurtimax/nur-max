@@ -1,0 +1,42 @@
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 30%;
+
+  position: relative;
+
+  background: var(--ion-color-light) !important;
+}
+
+.avatar {
+  width: 25vh;
+  height: 25vh;
+  aspect-ratio: 1 / 1;
+
+  position: absolute;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.avatarBackground {
+  background: var(--ion-color-light) !important;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.avatarBackground img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+}

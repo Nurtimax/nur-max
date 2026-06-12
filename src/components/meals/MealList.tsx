@@ -1,20 +1,18 @@
 import React, { FC } from "react";
 import MealCard from "./MealCard";
-import { MealDay } from "../../@types/meal.types";
-import { useMutation } from "@tanstack/react-query";
-import { updateFoods } from "../../query/foods.query";
+import { IMealAction, MealDay } from "../../@types/meal.types";
+import { useFoodsStore } from "../../store/foods.store";
 
 interface IProps {
   list?: MealDay[];
 }
 const HomeMealList: FC<IProps> = ({ list }) => {
-  const mutation = useMutation({ mutationFn: updateFoods });
+  const toggleFoodsComplete = useFoodsStore(
+    (state) => state.toggleFoodsComplete,
+  );
 
-  const updateComplete = (data: MealDay) => {
-    const mapedList = list?.map((item) =>
-      item.day === data.day ? data : item,
-    );
-    mutation.mutate({ list: mapedList });
+  const updateComplete = (data: MealDay, action: IMealAction) => {
+    toggleFoodsComplete(data.day, action.key);
   };
 
   return (

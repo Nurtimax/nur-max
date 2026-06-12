@@ -1,15 +1,9 @@
 import { IonCardSubtitle, IonContent } from "@ionic/react";
-import { useQuery } from "@tanstack/react-query";
-import { getFoods } from "../../../query/foods.query";
 import HomeMealList from "../../../components/meals/MealList";
+import { useFoodsStore } from "../../../store/foods.store";
 
 const FoodsContent = () => {
-  const { data } = useQuery({
-    queryKey: ["foods"],
-    queryFn: getFoods,
-    initialData: null,
-    retry: 2,
-  });
+  const foods = useFoodsStore((state) => state.foods);
 
   return (
     <IonContent>
@@ -17,7 +11,7 @@ const FoodsContent = () => {
         <IonCardSubtitle>🍽 30 күндүк тамактануу планы</IonCardSubtitle>
       </div>
 
-      <HomeMealList list={data?.list} />
+      <HomeMealList list={foods} />
     </IonContent>
   );
 };
