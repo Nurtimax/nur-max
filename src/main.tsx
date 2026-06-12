@@ -44,6 +44,6 @@ const data = JSON.stringify({
 });
 
 if (window.parent !== window) {
-  window.parent.postMessage(data, "https://web.telegram.org");
+  window.parent.postMessage(data, "https://web.telegram.org/k/");
   console.log("✅ Сообщение отправлено");
 }
