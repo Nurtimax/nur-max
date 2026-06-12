@@ -13,9 +13,9 @@ declare global {
   }
 }
 
-const app = window.Telegram.WebApp;
+const app = window.Telegram?.WebApp;
 
-app.expand();
+app?.expand();
 
 const container = document.getElementById("root");
 const root = createRoot(container!);

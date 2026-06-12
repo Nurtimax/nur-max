@@ -10,8 +10,9 @@ import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router";
 import HomePage from "../pages/home/page";
 import ProfilePage from "../pages/profile/page";
-import { people, pizza, home } from "ionicons/icons";
+import { people, pizza, home, settings } from "ionicons/icons";
 import FoodsPage from "../pages/foods/page";
+import SettingsPage from "../pages/settings/page";
 
 const AppRouters = () => {
   return (
@@ -26,6 +27,9 @@ const AppRouters = () => {
           </Route>
           <Route exact path="/foods">
             <FoodsPage />
+          </Route>
+          <Route exact path="/settings">
+            <SettingsPage />
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />
@@ -43,6 +47,10 @@ const AppRouters = () => {
           <IonTabButton tab="profile" href="/profile">
             <IonIcon aria-hidden="true" icon={people} />
             <IonLabel>Profile</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="settings" href="/settings">
+            <IonIcon aria-hidden="true" icon={settings} />
+            <IonLabel>Settings</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

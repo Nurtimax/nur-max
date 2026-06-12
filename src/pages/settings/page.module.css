@@ -1,0 +1,21 @@
+.version {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 0.5rem;
+  color: gray;
+}
+
+.versionText {
+  width: 100%;
+}
+
+.content {
+  height: 90%;
+  width: 100%;
+
+  display: grid;
+  align-items: flex-end;
+  justify-content: center;
+}
