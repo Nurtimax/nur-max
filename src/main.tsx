@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 
 const data = JSON.stringify({
-  eventType: "web_app_setup_back_button",
+  eventType: "web_app_exit_fullscreen",
   eventData: {
     is_visible: true,
   },
