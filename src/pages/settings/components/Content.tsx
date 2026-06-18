@@ -21,7 +21,7 @@ const SettingsContent: FC<IProps> = ({ title }) => {
     document.documentElement.classList.toggle("ion-palette-dark", shouldAdd);
   };
 
-  const { platform } = useTelegramFullscreen();
+  const { platform, isFullscreen } = useTelegramFullscreen();
 
   return (
     <IonContent fullscreen>
@@ -51,6 +51,9 @@ const SettingsContent: FC<IProps> = ({ title }) => {
         <div className={classes.version}>
           <div>
             <p className={classes.versionText}>Платформа: {platform || ""}</p>
+            <p className={classes.versionText}>
+              isFullscreen: {isFullscreen ? "true" : "false"}
+            </p>
             <p className={classes.versionText}>Версия: {jsonFile.version}</p>
           </div>
         </div>
