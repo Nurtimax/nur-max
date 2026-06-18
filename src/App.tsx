@@ -33,6 +33,7 @@ import AppRouters from "./routes";
 import QueryProvider from "./providers/QueryProvider";
 import InitializingProvider from "./providers/InitializingProvider";
 import FoodProvider from "./providers/FoodProvider";
+import TelegramProvider from "./providers/TelegramProvider";
 
 setupIonicReact({ mode: "ios", backButtonText: "Назад" });
 
@@ -41,7 +42,9 @@ const App: React.FC = () => (
     <QueryProvider>
       <InitializingProvider>
         <FoodProvider>
-          <AppRouters />
+          <TelegramProvider>
+            <AppRouters />
+          </TelegramProvider>
         </FoodProvider>
       </InitializingProvider>
     </QueryProvider>
