@@ -11,36 +11,36 @@ export const useTelegramFullscreen = () => {
   const [isReady, setIsReady] = useState(false);
   const [platform, setPlatform] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!tg) {
-      setIsReady(true);
-      return;
-    }
+  // useEffect(() => {
+  //   if (!tg) {
+  //     setIsReady(true);
+  //     return;
+  //   }
 
-    const init = () => {
-      setVersion(tg.version || "");
-      setIsFullscreen(tg.isFullscreen || false);
-      setPlatform(tg.platform || null);
+  //   const init = () => {
+  //     setVersion(tg.version || "");
+  //     setIsFullscreen(tg.isFullscreen || false);
+  //     setPlatform(tg.platform || null);
 
-      // Check if fullscreen is supported (Bot API 8.0+)
-      const supported = tg.isVersionAtLeast?.("8.0") || false;
-      setIsSupported(supported);
-      setIsReady(true);
-    };
+  //     // Check if fullscreen is supported (Bot API 8.0+)
+  //     const supported = tg.isVersionAtLeast?.("8.0") || false;
+  //     setIsSupported(supported);
+  //     setIsReady(true);
+  //   };
 
-    init();
+  //   init();
 
-    // Listen to fullscreen changes
-    const handleFullscreenChanged = () => {
-      setIsFullscreen(tg.isFullscreen || false);
-    };
+  //   // Listen to fullscreen changes
+  //   const handleFullscreenChanged = () => {
+  //     setIsFullscreen(tg.isFullscreen || false);
+  //   };
 
-    tg.onEvent?.("fullscreenChanged", handleFullscreenChanged);
+  //   tg.onEvent?.("fullscreenChanged", handleFullscreenChanged);
 
-    return () => {
-      tg.offEvent?.("fullscreenChanged", handleFullscreenChanged);
-    };
-  }, []);
+  //   return () => {
+  //     tg.offEvent?.("fullscreenChanged", handleFullscreenChanged);
+  //   };
+  // }, []);
 
   const enterFullscreen = useCallback(() => {
     if (!tg) return false;
