@@ -11,6 +11,7 @@ import {
 import { FC } from "react";
 import classes from "../page.module.css";
 import jsonFile from "../../../../package.json";
+import { useTelegramFullscreen } from "../../../hooks/useTelegramFullscreen";
 
 interface IProps {
   title: string;
@@ -19,6 +20,8 @@ const SettingsContent: FC<IProps> = ({ title }) => {
   const toggleDarkPalette = (shouldAdd: boolean) => {
     document.documentElement.classList.toggle("ion-palette-dark", shouldAdd);
   };
+
+  const { platform } = useTelegramFullscreen();
 
   return (
     <IonContent fullscreen>
@@ -46,9 +49,10 @@ const SettingsContent: FC<IProps> = ({ title }) => {
         </IonList>
 
         <div className={classes.version}>
-          <p className={classes.versionText}>
-            Версия приложения: {jsonFile.version}
-          </p>
+          <div>
+            <p className={classes.versionText}>Платформа: {platform || ""}</p>
+            <p className={classes.versionText}>Версия: {jsonFile.version}</p>
+          </div>
         </div>
       </div>
     </IonContent>

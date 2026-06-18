@@ -2,6 +2,7 @@
 export interface TelegramWebApp {
   version: string;
   isFullscreen: boolean;
+  platform: string;
   requestFullscreen: () => void;
   exitFullscreen: () => void;
   expand: () => void;

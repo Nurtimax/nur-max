@@ -9,6 +9,7 @@ export const useTelegramFullscreen = () => {
   const [version, setVersion] = useState<string>("");
   const [isSupported, setIsSupported] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [platform, setPlatform] = useState<string | null>(null);
 
   useEffect(() => {
     if (!tg) {
@@ -19,6 +20,7 @@ export const useTelegramFullscreen = () => {
     const init = () => {
       setVersion(tg.version || "");
       setIsFullscreen(tg.isFullscreen || false);
+      setPlatform(tg.platform || null);
 
       // Check if fullscreen is supported (Bot API 8.0+)
       const supported = tg.isVersionAtLeast?.("8.0") || false;
@@ -85,6 +87,7 @@ export const useTelegramFullscreen = () => {
   }, [isFullscreen, enterFullscreen, exitFullscreen]);
 
   return {
+    platform,
     isFullscreen,
     isSupported,
     version,
