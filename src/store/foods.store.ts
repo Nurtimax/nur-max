@@ -3,6 +3,7 @@ import { persist } from "zustand/middleware";
 import { MealActionKey, MealDay } from "../@types/meal.types";
 
 interface Food {
+  version: string | null;
   foods: MealDay[];
   isUpdate: boolean;
   isLoading: boolean;
@@ -10,6 +11,7 @@ interface Food {
 
 interface FoodsStore extends Food {
   setFoods: (foods: MealDay[]) => void;
+  setVersion: (version: string) => void;
   toggleFoodsLoading: () => void;
   toggleFoodsComplete: (day: number, key: MealActionKey) => void;
   updateIsUpdate: (isUpdate: boolean) => void;
@@ -18,10 +20,12 @@ interface FoodsStore extends Food {
 export const useFoodsStore = create<FoodsStore>()(
   persist(
     (set) => ({
+      version: null,
       foods: [],
       isUpdate: false,
       isLoading: false,
       setFoods: (foods) => set({ foods }),
+      setVersion: (version) => set({ version }),
       toggleFoodsLoading: () =>
         set((state) => ({ isLoading: !state.isLoading })),
       toggleFoodsComplete: (day, key) =>

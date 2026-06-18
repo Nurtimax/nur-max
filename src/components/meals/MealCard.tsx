@@ -30,33 +30,34 @@ const MealCard: FC<IProps> = ({ data, updateComplete }) => {
         <IonLabel>{data.day}-күн</IonLabel>
       </IonItemDivider>
 
-      {FOOD_ACTIONS.map(
-        (action) =>
-          !data[action.key].complete && (
-            <IonItemSliding>
-              <IonItem button className={classes.ionItem}>
-                <IonIcon icon={action.icon} color={action.color} />
-                <IonLabel className={classes.ionLabel}>
-                  <p>{action.title}</p>
-                  <h1 style={{ margin: 0 }}>{data[action.key].name}</h1>
-                </IonLabel>
-              </IonItem>
-              <IonItemOptions slot="end">
-                <IonItemOption
-                  color="light"
-                  expandable={true}
-                  onClick={() => handleCheckboxClick(action)}
-                >
-                  <IonIcon
-                    slot="icon-only"
-                    color={data[action.key].complete ? "success" : "danger"}
-                    icon={trash}
-                  ></IonIcon>
-                </IonItemOption>
-              </IonItemOptions>
-            </IonItemSliding>
-          ),
-      )}
+      {FOOD_ACTIONS.map((action) => (
+        <IonItemSliding>
+          <IonItem
+            button
+            className={classes.ionItem}
+            disabled={data[action.key].complete}
+          >
+            <IonIcon icon={action.icon} color={action.color} />
+            <IonLabel className={classes.ionLabel}>
+              <p>{action.title}</p>
+              <h1 style={{ margin: 0 }}>{data[action.key].name}</h1>
+            </IonLabel>
+          </IonItem>
+          <IonItemOptions slot="end">
+            <IonItemOption
+              color="light"
+              expandable={true}
+              onClick={() => handleCheckboxClick(action)}
+            >
+              <IonIcon
+                slot="icon-only"
+                color={data[action.key].complete ? "success" : "danger"}
+                icon={trash}
+              ></IonIcon>
+            </IonItemOption>
+          </IonItemOptions>
+        </IonItemSliding>
+      ))}
     </IonList>
   );
 };

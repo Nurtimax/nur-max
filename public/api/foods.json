@@ -1,173 +1,246 @@
 {
+  "version": "1.1.2",
   "list": [
     {
       "day": 1,
       "breakfast": {
-        "name": "Сулу боткосу",
+        "name": "Каша день и ночь",
+        "weight": "400 г",
         "complete": false
       },
       "lunch": {
         "name": "Плов",
+        "weight": "230 г",
         "complete": false
       },
       "dinner": {
-        "name": "Салат",
+        "name": "Куриное шато с шампиньонами",
+        "weight": "160 г",
         "complete": false
       },
       "fruit": {
-        "name": "Алма",
+        "name": "Яблоко",
+        "complete": false
+      },
+      "snack": {
+        "name": "Йогурт",
+        "weight": "200 г",
         "complete": false
       }
     },
     {
       "day": 2,
       "breakfast": {
-        "name": "Гречка",
+        "name": "Гречка с яйцом",
+        "weight": "150 г + 1 шт",
         "complete": false
       },
       "lunch": {
-        "name": "Манты",
+        "name": "Манты с мясом",
+        "weight": "2 шт (180 г)",
         "complete": false
       },
       "dinner": {
-        "name": "Йогурт",
+        "name": "Салат Греческий с фетакской",
+        "weight": "200 г",
         "complete": false
       },
       "fruit": {
         "name": "Банан",
+        "complete": false
+      },
+      "snack": {
+        "name": "Творожное пирожное",
+        "weight": "1 шт",
         "complete": false
       }
     },
     {
       "day": 3,
       "breakfast": {
-        "name": "Омлет",
+        "name": "Яичница с тостом",
+        "weight": "1 порция",
         "complete": false
       },
       "lunch": {
-        "name": "Сложный гарнир",
+        "name": "Запеканка с курицей",
+        "weight": "130 г",
         "complete": false
       },
       "dinner": {
-        "name": "Салат",
+        "name": "Салат Витаминка",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
         "name": "Апельсин",
+        "complete": false
+      },
+      "snack": {
+        "name": "Компот",
+        "weight": "0.5 л",
         "complete": false
       }
     },
     {
       "day": 4,
       "breakfast": {
-        "name": "Сулу боткосу",
+        "name": "Сулу боткосу (молочная каша)",
+        "weight": "400 г",
         "complete": false
       },
       "lunch": {
-        "name": "Печень с рисом",
+        "name": "Курица по-княжески",
+        "weight": "210 г",
         "complete": false
       },
       "dinner": {
-        "name": "Компот",
+        "name": "Салат Микс с капустой",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
         "name": "Киви",
+        "complete": false
+      },
+      "snack": {
+        "name": "Морс вишневый",
+        "weight": "0.5 л",
         "complete": false
       }
     },
     {
       "day": 5,
       "breakfast": {
-        "name": "Гречка",
+        "name": "Омлет с зеленью",
+        "weight": "1 порция",
         "complete": false
       },
       "lunch": {
         "name": "Бешбармак",
+        "weight": "315 г",
         "complete": false
       },
       "dinner": {
-        "name": "Салат",
+        "name": "Салат Капустный с гранатовым соусом",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
-        "name": "Алма",
+        "name": "Яблоко",
+        "complete": false
+      },
+      "snack": {
+        "name": "Кефир",
+        "weight": "250 мл",
         "complete": false
       }
     },
     {
       "day": 6,
       "breakfast": {
-        "name": "Омлет",
+        "name": "Каша пшенная с тыквой",
+        "weight": "200 г",
         "complete": false
       },
       "lunch": {
-        "name": "Куурдак",
+        "name": "Куурдак с курицей",
+        "weight": "350 г",
         "complete": false
       },
       "dinner": {
-        "name": "Йогурт",
+        "name": "Салат Оливье",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
         "name": "Банан",
+        "complete": false
+      },
+      "snack": {
+        "name": "Сок яблочный",
+        "weight": "200 мл",
         "complete": false
       }
     },
     {
       "day": 7,
       "breakfast": {
-        "name": "Сулу боткосу",
+        "name": "Завтрак Скандинавский",
+        "weight": "200 г",
         "complete": false
       },
       "lunch": {
-        "name": "Лагман",
+        "name": "Лагман (Босо лагман)",
+        "weight": "350 г",
         "complete": false
       },
       "dinner": {
-        "name": "Салат",
+        "name": "Салат Свекольный с орехом",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
         "name": "Апельсин",
+        "complete": false
+      },
+      "snack": {
+        "name": "Энергетик Lavina",
+        "weight": "0.45 л",
         "complete": false
       }
     },
     {
       "day": 8,
       "breakfast": {
-        "name": "Гречка",
+        "name": "Гречка с яйцом",
+        "weight": "150 г + 1 шт",
         "complete": false
       },
       "lunch": {
-        "name": "Шорпо",
+        "name": "Шорпо с бараниной",
+        "weight": "400 г",
         "complete": false
       },
       "dinner": {
-        "name": "Компот",
+        "name": "Салат Крабовый",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
         "name": "Киви",
+        "complete": false
+      },
+      "snack": {
+        "name": "Чай зеленый",
+        "weight": "0.5 л",
         "complete": false
       }
     },
     {
       "day": 9,
       "breakfast": {
-        "name": "Омлет",
+        "name": "Омлет с сыром",
+        "weight": "1 порция",
         "complete": false
       },
       "lunch": {
-        "name": "Ормо",
+        "name": "Ормо с мясом",
+        "weight": "115 г",
         "complete": false
       },
       "dinner": {
-        "name": "Салат",
+        "name": "Салат Морковный",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
-        "name": "Алма",
+        "name": "Яблоко",
+        "complete": false
+      },
+      "snack": {
+        "name": "Вода с лимоном",
+        "weight": "1 л",
         "complete": false
       }
     },
@@ -175,113 +248,161 @@
       "day": 10,
       "breakfast": {
         "name": "Сулу боткосу",
+        "weight": "400 г",
         "complete": false
       },
       "lunch": {
         "name": "Плов",
+        "weight": "230 г",
         "complete": false
       },
       "dinner": {
-        "name": "Йогурт",
+        "name": "Салат Греческий",
+        "weight": "200 г",
         "complete": false
       },
       "fruit": {
         "name": "Банан",
+        "complete": false
+      },
+      "snack": {
+        "name": "Минеральная вода без газа",
+        "weight": "1 л",
         "complete": false
       }
     },
     {
       "day": 11,
       "breakfast": {
-        "name": "Гречка",
+        "name": "Завтрак с лавашом",
+        "weight": "1 порция",
         "complete": false
       },
       "lunch": {
-        "name": "Манты",
+        "name": "Манты с картошкой",
+        "weight": "2 шт (180 г)",
         "complete": false
       },
       "dinner": {
-        "name": "Салат",
+        "name": "Курица с брокколи",
+        "weight": "205 г",
         "complete": false
       },
       "fruit": {
         "name": "Апельсин",
+        "complete": false
+      },
+      "snack": {
+        "name": "Морс вишневый",
+        "weight": "1 л",
         "complete": false
       }
     },
     {
       "day": 12,
       "breakfast": {
-        "name": "Омлет",
+        "name": "Яичница с тостом",
+        "weight": "1 порция",
         "complete": false
       },
       "lunch": {
-        "name": "Сложный гарнир",
+        "name": "Запеканка с говядиной",
+        "weight": "140 г",
         "complete": false
       },
       "dinner": {
-        "name": "Компот",
+        "name": "Салат Свекольный с апельсином",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
         "name": "Киви",
+        "complete": false
+      },
+      "snack": {
+        "name": "Чай черный",
+        "weight": "0.5 л",
         "complete": false
       }
     },
     {
       "day": 13,
       "breakfast": {
-        "name": "Сулу боткосу",
+        "name": "Каша день и ночь",
+        "weight": "400 г",
         "complete": false
       },
       "lunch": {
-        "name": "Печень с рисом",
+        "name": "Курица в соусе карри",
+        "weight": "210 г",
         "complete": false
       },
       "dinner": {
-        "name": "Салат",
+        "name": "Салат Свекольный с гранатом",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
-        "name": "Алма",
+        "name": "Яблоко",
+        "complete": false
+      },
+      "snack": {
+        "name": "Компот",
+        "weight": "1 л",
         "complete": false
       }
     },
     {
       "day": 14,
       "breakfast": {
-        "name": "Гречка",
+        "name": "Блины с творогом",
+        "weight": "3 шт",
         "complete": false
       },
       "lunch": {
         "name": "Бешбармак",
+        "weight": "315 г",
         "complete": false
       },
       "dinner": {
-        "name": "Йогурт",
+        "name": "Салат Сельдь под шубой",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
         "name": "Банан",
+        "complete": false
+      },
+      "snack": {
+        "name": "Сок апельсиновый",
+        "weight": "200 мл",
         "complete": false
       }
     },
     {
       "day": 15,
       "breakfast": {
-        "name": "Омлет",
+        "name": "Омлет с помидорами",
+        "weight": "1 порция",
         "complete": false
       },
       "lunch": {
-        "name": "Куурдак",
+        "name": "Куурдак с печенью",
+        "weight": "300 г",
         "complete": false
       },
       "dinner": {
-        "name": "Салат",
+        "name": "Салат Нисуаз",
+        "weight": "200 г",
         "complete": false
       },
       "fruit": {
         "name": "Апельсин",
+        "complete": false
+      },
+      "snack": {
+        "name": "Минеральная вода с газом",
+        "weight": "1 л",
         "complete": false
       }
     },
@@ -289,113 +410,161 @@
       "day": 16,
       "breakfast": {
         "name": "Сулу боткосу",
+        "weight": "400 г",
         "complete": false
       },
       "lunch": {
-        "name": "Лагман",
+        "name": "Лагман (Гуйру лагман)",
+        "weight": "350 г",
         "complete": false
       },
       "dinner": {
-        "name": "Компот",
+        "name": "Салат Острый капустный",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
         "name": "Киви",
+        "complete": false
+      },
+      "snack": {
+        "name": "Чай зеленый",
+        "weight": "1 л",
         "complete": false
       }
     },
     {
       "day": 17,
       "breakfast": {
-        "name": "Гречка",
+        "name": "Каша пшенная с тыквой",
+        "weight": "200 г",
         "complete": false
       },
       "lunch": {
-        "name": "Шорпо",
+        "name": "Шорпо с говядиной",
+        "weight": "400 г",
         "complete": false
       },
       "dinner": {
-        "name": "Салат",
+        "name": "Салат Куриный с овощами",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
-        "name": "Алма",
+        "name": "Яблоко",
+        "complete": false
+      },
+      "snack": {
+        "name": "Вода с лимоном",
+        "weight": "0.5 л",
         "complete": false
       }
     },
     {
       "day": 18,
       "breakfast": {
-        "name": "Омлет",
+        "name": "Сырники",
+        "weight": "1 шт",
         "complete": false
       },
       "lunch": {
-        "name": "Ормо",
+        "name": "Ормо с тыквой",
+        "weight": "115 г",
         "complete": false
       },
       "dinner": {
-        "name": "Йогурт",
+        "name": "Форель в сливочном соусе",
+        "weight": "250 г",
         "complete": false
       },
       "fruit": {
         "name": "Банан",
+        "complete": false
+      },
+      "snack": {
+        "name": "Компот",
+        "weight": "0.5 л",
         "complete": false
       }
     },
     {
       "day": 19,
       "breakfast": {
-        "name": "Сулу боткосу",
+        "name": "Гренки с сыром",
+        "weight": "1 порция",
         "complete": false
       },
       "lunch": {
         "name": "Плов",
+        "weight": "230 г",
         "complete": false
       },
       "dinner": {
-        "name": "Салат",
+        "name": "Салат Капустный с майонезом",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
         "name": "Апельсин",
+        "complete": false
+      },
+      "snack": {
+        "name": "Морс вишневый",
+        "weight": "0.5 л",
         "complete": false
       }
     },
     {
       "day": 20,
       "breakfast": {
-        "name": "Гречка",
+        "name": "Блины с курицей",
+        "weight": "3 шт",
         "complete": false
       },
       "lunch": {
-        "name": "Манты",
+        "name": "Манты с мясом",
+        "weight": "2 шт (180 г)",
         "complete": false
       },
       "dinner": {
-        "name": "Компот",
+        "name": "Овощи припущенные",
+        "weight": "200 г",
         "complete": false
       },
       "fruit": {
         "name": "Киви",
+        "complete": false
+      },
+      "snack": {
+        "name": "Минеральная вода без газа",
+        "weight": "0.5 л",
         "complete": false
       }
     },
     {
       "day": 21,
       "breakfast": {
-        "name": "Омлет",
+        "name": "Омлет с авокадо",
+        "weight": "1 порция",
         "complete": false
       },
       "lunch": {
-        "name": "Сложный гарнир",
+        "name": "Курица по-мексикански",
+        "weight": "270 г",
         "complete": false
       },
       "dinner": {
-        "name": "Салат",
+        "name": "Салат Цезарь",
+        "weight": "200 г",
         "complete": false
       },
       "fruit": {
-        "name": "Алма",
+        "name": "Яблоко",
+        "complete": false
+      },
+      "snack": {
+        "name": "Чай черный",
+        "weight": "1 л",
         "complete": false
       }
     },
@@ -403,170 +572,269 @@
       "day": 22,
       "breakfast": {
         "name": "Сулу боткосу",
+        "weight": "400 г",
         "complete": false
       },
       "lunch": {
         "name": "Печень с рисом",
+        "weight": "300 г",
         "complete": false
       },
       "dinner": {
-        "name": "Йогурт",
+        "name": "Салат Мимоза",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
         "name": "Банан",
+        "complete": false
+      },
+      "snack": {
+        "name": "Компот",
+        "weight": "1 л",
         "complete": false
       }
     },
     {
       "day": 23,
       "breakfast": {
-        "name": "Гречка",
+        "name": "Гречка с яйцом",
+        "weight": "150 г + 1 шт",
         "complete": false
       },
       "lunch": {
         "name": "Бешбармак",
+        "weight": "315 г",
         "complete": false
       },
       "dinner": {
-        "name": "Салат",
+        "name": "Тыква запеченная",
+        "weight": "200 г",
         "complete": false
       },
       "fruit": {
         "name": "Апельсин",
+        "complete": false
+      },
+      "snack": {
+        "name": "Йогурт",
+        "weight": "200 г",
         "complete": false
       }
     },
     {
       "day": 24,
       "breakfast": {
-        "name": "Омлет",
+        "name": "Яичница",
+        "weight": "1 порция",
         "complete": false
       },
       "lunch": {
-        "name": "Куурдак",
+        "name": "Куурдак с бараниной",
+        "weight": "350 г",
         "complete": false
       },
       "dinner": {
-        "name": "Компот",
+        "name": "Салат Спаржевый",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
         "name": "Киви",
+        "complete": false
+      },
+      "snack": {
+        "name": "Минеральная вода с газом",
+        "weight": "0.5 л",
         "complete": false
       }
     },
     {
       "day": 25,
       "breakfast": {
-        "name": "Сулу боткосу",
+        "name": "Завтрак Скандинавский",
+        "weight": "200 г",
         "complete": false
       },
       "lunch": {
-        "name": "Лагман",
+        "name": "Лагман (Босо лагман)",
+        "weight": "350 г",
         "complete": false
       },
       "dinner": {
-        "name": "Салат",
+        "name": "Салат Греческий",
+        "weight": "200 г",
         "complete": false
       },
       "fruit": {
-        "name": "Алма",
+        "name": "Яблоко",
+        "complete": false
+      },
+      "snack": {
+        "name": "Компот",
+        "weight": "0.5 л",
         "complete": false
       }
     },
     {
       "day": 26,
       "breakfast": {
-        "name": "Гречка",
+        "name": "Оладьи с фруктами",
+        "weight": "1 порция",
         "complete": false
       },
       "lunch": {
-        "name": "Шорпо",
+        "name": "Шорпо с бараниной",
+        "weight": "400 г",
         "complete": false
       },
       "dinner": {
-        "name": "Йогурт",
+        "name": "Котлета куриная",
+        "weight": "1 шт",
         "complete": false
       },
       "fruit": {
         "name": "Банан",
+        "complete": false
+      },
+      "snack": {
+        "name": "Морс вишневый",
+        "weight": "1 л",
         "complete": false
       }
     },
     {
       "day": 27,
       "breakfast": {
-        "name": "Омлет",
+        "name": "Каша день и ночь",
+        "weight": "400 г",
         "complete": false
       },
       "lunch": {
-        "name": "Ормо",
+        "name": "Ормо с мясом",
+        "weight": "115 г",
         "complete": false
       },
       "dinner": {
-        "name": "Салат",
+        "name": "Салат Витаминка",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
         "name": "Апельсин",
+        "complete": false
+      },
+      "snack": {
+        "name": "Чай зеленый",
+        "weight": "0.5 л",
         "complete": false
       }
     },
     {
       "day": 28,
       "breakfast": {
-        "name": "Сулу боткосу",
+        "name": "Бургер Чиабата",
+        "weight": "1 шт",
         "complete": false
       },
       "lunch": {
         "name": "Плов",
+        "weight": "230 г",
         "complete": false
       },
       "dinner": {
-        "name": "Компот",
+        "name": "Салат Морковный",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
         "name": "Киви",
+        "complete": false
+      },
+      "snack": {
+        "name": "Вода с лимоном",
+        "weight": "1 л",
         "complete": false
       }
     },
     {
       "day": 29,
       "breakfast": {
-        "name": "Гречка",
+        "name": "Сырники со сметаной",
+        "weight": "1 шт",
         "complete": false
       },
       "lunch": {
-        "name": "Манты",
+        "name": "Манты с мясом",
+        "weight": "2 шт (180 г)",
         "complete": false
       },
       "dinner": {
-        "name": "Салат",
+        "name": "Салат Свекольный с орехом",
+        "weight": "150 г",
         "complete": false
       },
       "fruit": {
-        "name": "Алма",
+        "name": "Яблоко",
+        "complete": false
+      },
+      "snack": {
+        "name": "Компот",
+        "weight": "0.2 л",
         "complete": false
       }
     },
     {
       "day": 30,
       "breakfast": {
-        "name": "Омлет",
+        "name": "Омлет с тостом",
+        "weight": "1 порция",
         "complete": false
       },
       "lunch": {
-        "name": "Сложный гарнир",
+        "name": "Курица с цветной капустой",
+        "weight": "270 г",
         "complete": false
       },
       "dinner": {
         "name": "Йогурт",
+        "weight": "200 г",
         "complete": false
       },
       "fruit": {
         "name": "Банан",
+        "complete": false
+      },
+      "snack": {
+        "name": "Минеральная вода без газа",
+        "weight": "1 л",
+        "complete": false
+      }
+    },
+    {
+      "day": 31,
+      "breakfast": {
+        "name": "Блины с творогом",
+        "weight": "3 шт",
+        "complete": false
+      },
+      "lunch": {
+        "name": "Бифштекс",
+        "weight": "350 г",
+        "complete": false
+      },
+      "dinner": {
+        "name": "Салат Капустный с гранатовым соусом",
+        "weight": "150 г",
+        "complete": false
+      },
+      "fruit": {
+        "name": "Апельсин",
+        "complete": false
+      },
+      "snack": {
+        "name": "Чай черный",
+        "weight": "0.5 л",
         "complete": false
       }
     }

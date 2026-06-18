@@ -16,18 +16,22 @@ const FoodProvider: FC<FoodProviderProps> = ({ children }) => {
   const setFoods = useFoodsStore((state) => state.setFoods);
   const isUpdated = useFoodsStore((state) => state.isUpdate);
   const updateIsUpdate = useFoodsStore((state) => state.updateIsUpdate);
+  const version = useFoodsStore((state) => state.version);
+  const serVersion = useFoodsStore((state) => state.setVersion);
 
   useQuery({
     queryKey: ["foods"],
     queryFn: async () => {
-      if (day !== 1) {
+      toggleFoodsLoading();
+      const response = await getFoods();
+      if (response.version !== version) {
+        serVersion(response.version);
+      } else if (day !== 1) {
         if (isUpdated) {
           return null; // Skip fetching if data is already updated
         }
       }
 
-      toggleFoodsLoading();
-      const response = await getFoods();
       toggleFoodsLoading();
 
       setFoods(response.list);

@@ -1,6 +1,7 @@
 import {
   leafOutline,
   moonOutline,
+  pizza,
   restaurantOutline,
   sunnyOutline,
 } from "ionicons/icons";
@@ -20,6 +21,7 @@ export const FOOD_ACTIONS: IMealAction[] = [
     color: "primary",
   },
   { key: "dinner", title: "🥗 Кечки", icon: moonOutline, color: "dark" },
+  { key: "snack", title: "🍰 Перекус", icon: pizza, color: "secondary" },
   {
     key: "fruit",
     title: "🍎 Жемиш",

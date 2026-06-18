@@ -10,9 +10,11 @@ export interface MealDay {
   lunch: MealDayAction;
   dinner: MealDayAction;
   fruit: MealDayAction;
+  snack: MealDayAction;
 }
 
 export interface MealPlanData {
+  version: string;
   list: MealDay[];
 }
 
