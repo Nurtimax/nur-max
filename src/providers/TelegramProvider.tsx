@@ -19,11 +19,11 @@ const TelegramProvider: FC<IProps> = ({ children }) => {
 
         if (isMiniAppActive()) {
           // Check if we're in a Mini App and fullscreen is available
-          if (requestFullscreen && requestFullscreen.isAvailable()) {
+          if (requestFullscreen && requestFullscreen?.isAvailable?.()) {
             await requestFullscreen();
           } else {
             popup.show({
-              message: "Fullscreen not available in this environment",
+              message: `Fullscreen not available in this environment ${requestFullscreen?.isAvailable?.()}`,
               timeout: 1000,
             });
           }
