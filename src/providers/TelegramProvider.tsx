@@ -10,7 +10,7 @@ const TelegramProvider: FC<IProps> = ({ children }) => {
 
   useEffect(() => {
     toggleFullscreen();
-  }, [toggleFullscreen]);
+  }, []);
 
   return <>{children}</>;
 };
