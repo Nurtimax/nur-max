@@ -1,13 +1,11 @@
-import { IonContent, IonToolbar } from "@ionic/react";
+import { IonContent } from "@ionic/react";
 import ProfileContentForm from "./ContentForm";
-import ProfileContentAvatar from "./ContentAvatar";
 import classes from "../page.module.css";
+import ProfileContentAvatar from "./ContentAvatar";
 
 const ProfileContent = () => {
   return (
     <IonContent>
-      <IonToolbar class={classes.toolbar} />
-
       <ProfileContentAvatar />
 
       <div className={classes.profileContentForm}>

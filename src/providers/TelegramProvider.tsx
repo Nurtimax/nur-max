@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, ReactNode, useEffect } from "react";
 import { useTelegramFullscreen } from "../hooks/useTelegramFullscreen";
 

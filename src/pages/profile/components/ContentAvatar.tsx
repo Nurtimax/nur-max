@@ -1,4 +1,4 @@
-import { IonAvatar, IonToolbar } from "@ionic/react";
+import { IonAvatar } from "@ionic/react";
 import classes from "../page.module.css";
 import { useUserStore } from "../../../store/user.store";
 
@@ -8,8 +8,6 @@ const ProfileContentAvatar = () => {
   return (
     <>
       <div className={classes.profileContainer}>
-        <IonToolbar />
-
         <div className={classes.avatarBackgroundContainer}>
           {photoUrl && (
             <div className={classes.avatarBackground}>

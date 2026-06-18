@@ -4,14 +4,15 @@ import { FC } from "react";
 interface IProps {
   title: string;
 }
-const ContentTitle: FC<IProps> = ({ title }) => {
+
+const FoodsHeader: FC<IProps> = ({ title }) => {
   return (
-    <IonHeader collapse="condense">
+    <IonHeader translucent={true}>
       <IonToolbar>
-        <IonTitle size="large">{title}</IonTitle>
+        <IonTitle>{title}</IonTitle>
       </IonToolbar>
     </IonHeader>
   );
 };
 
-export default ContentTitle;
+export default FoodsHeader;

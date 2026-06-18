@@ -1,16 +1,21 @@
-import { IonCardSubtitle, IonContent, IonToolbar } from "@ionic/react";
+import { IonContent, IonHeader, IonTitle, IonToolbar } from "@ionic/react";
 import HomeMealList from "../../../components/meals/MealList";
 import { useFoodsStore } from "../../../store/foods.store";
+import { FC } from "react";
 
-const FoodsContent = () => {
+interface IProps {
+  title: string;
+}
+const FoodsContent: FC<IProps> = ({ title }) => {
   const foods = useFoodsStore((state) => state.foods);
 
   return (
     <IonContent>
-      <IonToolbar />
-      <div className="ion-padding-horizontal ion-padding-top">
-        <IonCardSubtitle>🍽 30 күндүк тамактануу планы</IonCardSubtitle>
-      </div>
+      <IonHeader collapse="condense">
+        <IonToolbar>
+          <IonTitle size="large">{title}</IonTitle>
+        </IonToolbar>
+      </IonHeader>
 
       <HomeMealList list={foods} />
     </IonContent>
