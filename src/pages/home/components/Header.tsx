@@ -9,6 +9,7 @@ const HomeHeader: FC<IProps> = ({ title }) => {
   const { platform } = useTelegramFullscreen();
   return (
     <IonHeader translucent={true}>
+      {platform === "android" && <IonToolbar />}
       <IonToolbar>
         <IonTitle>{title}</IonTitle>
       </IonToolbar>
