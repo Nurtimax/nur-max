@@ -1,5 +1,10 @@
 import { FC, ReactNode, useEffect } from "react";
-import { init, requestFullscreen, popup } from "@telegram-apps/sdk-react";
+import {
+  init,
+  requestFullscreen,
+  popup,
+  isMiniAppActive,
+} from "@telegram-apps/sdk-react";
 
 interface IProps {
   children: ReactNode;
@@ -10,16 +15,18 @@ const TelegramProvider: FC<IProps> = ({ children }) => {
     const initializeApp = async () => {
       try {
         // Initialize the SDK first
-        init({ postEvent: () => {} });
+        await init();
 
-        // Check if we're in a Mini App and fullscreen is available
-        if (requestFullscreen && requestFullscreen.isAvailable()) {
-          await requestFullscreen();
-        } else {
-          popup.show({
-            message: "Fullscreen not available in this environment",
-            timeout: 1000,
-          });
+        if (isMiniAppActive()) {
+          // Check if we're in a Mini App and fullscreen is available
+          if (requestFullscreen && requestFullscreen.isAvailable()) {
+            await requestFullscreen();
+          } else {
+            popup.show({
+              message: "Fullscreen not available in this environment",
+              timeout: 1000,
+            });
+          }
         }
       } catch (error) {
         console.warn("Telegram initialization failed:", error);
