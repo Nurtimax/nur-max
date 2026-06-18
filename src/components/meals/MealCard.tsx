@@ -35,7 +35,7 @@ const MealCard: FC<IProps> = ({ data, updateComplete }) => {
           <IonItem
             button
             className={classes.ionItem}
-            disabled={data[action.key].complete}
+            disabled={data[action.key]?.complete}
           >
             <IonIcon icon={action.icon} color={action.color} />
             <IonLabel className={classes.ionLabel}>
@@ -51,7 +51,7 @@ const MealCard: FC<IProps> = ({ data, updateComplete }) => {
             >
               <IonIcon
                 slot="icon-only"
-                color={data[action.key].complete ? "success" : "danger"}
+                color={data[action.key]?.complete ? "success" : "danger"}
                 icon={trash}
               ></IonIcon>
             </IonItemOption>
