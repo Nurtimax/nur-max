@@ -6,10 +6,10 @@ interface IProps {
   title: string;
 }
 const HomeHeader: FC<IProps> = ({ title }) => {
-  const { platform } = useTelegramFullscreen();
+  const { platform, isFullscreen } = useTelegramFullscreen();
   return (
     <IonHeader translucent={true}>
-      {platform === "android" && <IonToolbar />}
+      {(platform === "android" || isFullscreen) && <IonToolbar />}
       <IonToolbar>
         <IonTitle>{title}</IonTitle>
       </IonToolbar>
