@@ -40,7 +40,7 @@ const MealCard: FC<IProps> = ({ data, updateComplete }) => {
             <IonIcon icon={action.icon} color={action.color} />
             <IonLabel className={classes.ionLabel}>
               <p>{action.title}</p>
-              <h1 style={{ margin: 0 }}>{data[action.key].name}</h1>
+              <h2 style={{ margin: 0 }}>{data[action.key].name}</h2>
             </IonLabel>
           </IonItem>
           <IonItemOptions slot="end">
