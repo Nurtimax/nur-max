@@ -1,5 +1,5 @@
 import { FC, ReactNode, useEffect } from "react";
-import { init, requestFullscreen } from "@telegram-apps/sdk-react";
+import { init, requestFullscreen, popup } from "@telegram-apps/sdk-react";
 
 interface IProps {
   children: ReactNode;
@@ -16,10 +16,17 @@ const TelegramProvider: FC<IProps> = ({ children }) => {
         if (requestFullscreen && requestFullscreen.isAvailable()) {
           await requestFullscreen();
         } else {
-          console.log("Fullscreen not available in this environment");
+          popup.show({
+            message: "Fullscreen not available in this environment",
+            timeout: 1000,
+          });
         }
       } catch (error) {
         console.warn("Telegram initialization failed:", error);
+        popup.show({
+          message: "Telegram initialization failed:",
+          timeout: 1000,
+        });
       }
     };
 
