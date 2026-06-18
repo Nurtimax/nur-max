@@ -10,7 +10,7 @@ const TelegramProvider: FC<IProps> = ({ children }) => {
     const initializeApp = async () => {
       try {
         // Initialize the SDK first
-        init();
+        init({ postEvent: () => {} });
 
         // Check if we're in a Mini App and fullscreen is available
         if (requestFullscreen && requestFullscreen.isAvailable()) {

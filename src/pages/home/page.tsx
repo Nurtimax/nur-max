@@ -1,10 +1,13 @@
 import { IonPage } from "@ionic/react";
 import HomeContent from "./components/Content";
 import HomeHeader from "./components/Header";
+import { requestFullscreen } from "@telegram-apps/sdk-react";
 
 const meta = {
   title: "NUR MAX",
 };
+
+requestFullscreen();
 const HomePage = () => {
   return (
     <IonPage>
