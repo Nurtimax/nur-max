@@ -2,11 +2,11 @@ import { IonHeader, IonToolbar } from "@ionic/react";
 import { useTelegramFullscreen } from "../../../hooks/useTelegramFullscreen";
 
 const ProfileHeader = () => {
-  const { platform, isFullscreen } = useTelegramFullscreen();
+  const { platform } = useTelegramFullscreen();
 
   return (
     <IonHeader translucent={true}>
-      {platform === "android" && isFullscreen && <IonToolbar />}
+      {platform === "android" && <IonToolbar />}
       <IonToolbar></IonToolbar>
     </IonHeader>
   );

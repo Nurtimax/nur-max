@@ -7,11 +7,11 @@ interface IProps {
 }
 
 const FoodsHeader: FC<IProps> = ({ title }) => {
-  const { platform, isFullscreen } = useTelegramFullscreen();
+  const { platform } = useTelegramFullscreen();
 
   return (
     <IonHeader translucent={true}>
-      {platform === "android" && isFullscreen && <IonToolbar />}
+      {platform === "android" && <IonToolbar />}
       <IonToolbar>
         <IonTitle>{title}</IonTitle>
       </IonToolbar>
