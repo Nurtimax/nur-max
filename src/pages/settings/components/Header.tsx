@@ -9,7 +9,7 @@ const SettingsHeader: FC<IProps> = ({ title }) => {
   const { platform, isFullscreen } = useTelegramFullscreen();
   return (
     <IonHeader translucent={true}>
-      {(platform === "android" || isFullscreen) && <IonToolbar />}
+      {platform === "android" && isFullscreen && <IonToolbar />}
       <IonToolbar>
         <IonTitle>{title}</IonTitle>
       </IonToolbar>

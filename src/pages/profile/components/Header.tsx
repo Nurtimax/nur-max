@@ -6,7 +6,7 @@ const ProfileHeader = () => {
 
   return (
     <IonHeader translucent={true}>
-      {(platform === "android" || isFullscreen) && <IonToolbar />}
+      {platform === "android" && isFullscreen && <IonToolbar />}
       <IonToolbar></IonToolbar>
     </IonHeader>
   );
