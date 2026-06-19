@@ -12,13 +12,18 @@ import { FC } from "react";
 import classes from "../page.module.css";
 import jsonFile from "../../../../package.json";
 import { useTelegramFullscreen } from "../../../hooks/useTelegramFullscreen";
+import { useSettings } from "../../../store/settings.store";
 
 interface IProps {
   title: string;
 }
 const SettingsContent: FC<IProps> = ({ title }) => {
+  const { darkMode, isNotification, setToggleDarkMode, setToggleNotification } =
+    useSettings();
+
   const toggleDarkPalette = (shouldAdd: boolean) => {
     document.documentElement.classList.toggle("ion-palette-dark", shouldAdd);
+    setToggleDarkMode();
   };
 
   const { platform } = useTelegramFullscreen();
@@ -35,14 +40,17 @@ const SettingsContent: FC<IProps> = ({ title }) => {
         <IonList inset={true} className={classes.list}>
           <IonItem className={classes.item}>
             <IonToggle
-              checked={true}
+              checked={darkMode}
               onIonChange={(e) => toggleDarkPalette(e.detail.checked)}
             >
               <IonLabel>Темный режим</IonLabel>
             </IonToggle>
           </IonItem>
           <IonItem className={classes.item} disabled>
-            <IonToggle checked={false}>
+            <IonToggle
+              checked={isNotification}
+              onIonChange={() => setToggleNotification()}
+            >
               <IonLabel>Уведомления</IonLabel>
             </IonToggle>
           </IonItem>

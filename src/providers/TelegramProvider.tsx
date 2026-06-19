@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, ReactNode, useEffect, useState } from "react";
+import InitializingContent from "../components/initializing/Content";
 
 interface IProps {
   children: ReactNode;
@@ -44,7 +45,7 @@ const TelegramProvider: FC<IProps> = ({ children }) => {
   }, []);
 
   if (!isReady) {
-    return <div>Loading...</div>;
+    return <InitializingContent />;
   }
 
   return <>{children}</>;

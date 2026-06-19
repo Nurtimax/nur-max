@@ -34,22 +34,23 @@ import QueryProvider from "./providers/QueryProvider";
 import InitializingProvider from "./providers/InitializingProvider";
 import FoodProvider from "./providers/FoodProvider";
 import TelegramProvider from "./providers/TelegramProvider";
+import ThemeProvider from "./providers/ThemeProvider";
 
 setupIonicReact({ mode: "ios", backButtonText: "Назад" });
 
 const App: React.FC = () => (
   <IonApp>
-    <TelegramProvider>
-      <QueryProvider>
-        <InitializingProvider>
-          <FoodProvider>
-            <>
+    <ThemeProvider>
+      <TelegramProvider>
+        <QueryProvider>
+          <InitializingProvider>
+            <FoodProvider>
               <AppRouters />
-            </>
-          </FoodProvider>
-        </InitializingProvider>
-      </QueryProvider>
-    </TelegramProvider>
+            </FoodProvider>
+          </InitializingProvider>
+        </QueryProvider>
+      </TelegramProvider>
+    </ThemeProvider>
   </IonApp>
 );
 
