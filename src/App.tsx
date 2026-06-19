@@ -39,15 +39,17 @@ setupIonicReact({ mode: "ios", backButtonText: "Назад" });
 
 const App: React.FC = () => (
   <IonApp>
-    <QueryProvider>
-      <InitializingProvider>
-        <FoodProvider>
-          <TelegramProvider>
-            <AppRouters />
-          </TelegramProvider>
-        </FoodProvider>
-      </InitializingProvider>
-    </QueryProvider>
+    <TelegramProvider>
+      <QueryProvider>
+        <InitializingProvider>
+          <FoodProvider>
+            <>
+              <AppRouters />
+            </>
+          </FoodProvider>
+        </InitializingProvider>
+      </QueryProvider>
+    </TelegramProvider>
   </IonApp>
 );
 
