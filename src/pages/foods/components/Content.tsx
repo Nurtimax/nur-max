@@ -10,7 +10,7 @@ const FoodsContent: FC<IProps> = ({ title }) => {
   const foods = useFoodsStore((state) => state.foods);
 
   return (
-    <IonContent>
+    <IonContent fullscreen>
       <IonHeader collapse="condense">
         <IonToolbar>
           <IonTitle size="large">{title}</IonTitle>

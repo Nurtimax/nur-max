@@ -5,7 +5,7 @@ import ProfileContentAvatar from "./ContentAvatar";
 
 const ProfileContent = () => {
   return (
-    <IonContent>
+    <IonContent fullscreen>
       <ProfileContentAvatar />
 
       <div className={classes.profileContentForm}>
