@@ -15,11 +15,11 @@ interface UserStore {
 export const useUserStore = create<UserStore>()(
   persist(
     (set) => ({
-      user: { email: "", name: "", photoUrl: "" },
+      user: { email: "", name: "", photoUrl: "https://picsum.photos/200/300" },
       setUser: (user) => set({ user }),
     }),
     {
       name: "user-storage",
-    },
-  ),
+    }
+  )
 );
