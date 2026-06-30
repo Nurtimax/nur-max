@@ -3,24 +3,37 @@ import { useFormik } from "formik";
 import classes from "../page.module.css";
 import { User, useUserStore } from "../../../store/user.store";
 import { backspace } from "ionicons/icons";
+import { useLanguageStore } from "../../../store/language.store";
 
 const ProfileContentForm = () => {
   const setUser = useUserStore((state) => state.setUser);
   const user = useUserStore((state) => state.user);
+  const languageState = useLanguageStore((state) => state.state);
+
+  const t = languageState.pages.profile;
 
   const [present] = useIonToast();
 
   const formik = useFormik<User>({
     initialValues: user || { email: "", name: "", photoUrl: "" },
     onSubmit: (values, { resetForm }) => {
-      setUser(values);
-      resetForm({ values: values });
+      try {
+        setUser(values);
+        resetForm({ values: values });
 
-      present({
-        message: "Профиль успешно сохранен",
-        duration: 2000,
-        color: "success",
-      });
+        present({
+          message: t.save_success,
+          duration: 2000,
+          color: "success",
+        });
+      } catch (error) {
+        console.log(error, "error");
+        present({
+          message: t.save_error,
+          duration: 2000,
+          color: "danger",
+        });
+      }
     },
   });
 
@@ -30,7 +43,7 @@ const ProfileContentForm = () => {
         name="name"
         onChange={formik.handleChange}
         value={formik.values.name}
-        placeholder="Name"
+        placeholder={t.name_placeholder}
         onIonChange={formik.handleChange}
         debounce={300}
         type="text"
@@ -41,7 +54,7 @@ const ProfileContentForm = () => {
         name="email"
         onChange={formik.handleChange}
         value={formik.values.email}
-        placeholder="Email"
+        placeholder={t.email_placeholder}
         debounce={300}
         onIonChange={formik.handleChange}
         type="email"
@@ -53,7 +66,7 @@ const ProfileContentForm = () => {
         onChange={formik.handleChange}
         value={formik.values.photoUrl}
         onIonChange={formik.handleChange}
-        placeholder="Photo URL"
+        placeholder={t.photo_url_placeholder}
         debounce={300}
         type="url"
         clearInput
@@ -61,7 +74,7 @@ const ProfileContentForm = () => {
       />
 
       <IonButton type="submit" color="success" disabled={!formik.dirty}>
-        Сохранить
+        {t.save}
       </IonButton>
     </form>
   );

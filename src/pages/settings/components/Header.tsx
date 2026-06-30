@@ -2,19 +2,18 @@ import { IonHeader, IonTitle, IonToolbar } from "@ionic/react";
 import { FC } from "react";
 import {} from "@telegram-apps/sdk-react";
 import { useTelegramFullscreen } from "../../../hooks/useTelegramFullscreen";
+import { useLanguageStore } from "../../../store/language.store";
 
-interface IProps {
-  title: string;
-}
-
-const SettingsHeader: FC<IProps> = ({ title }) => {
+const SettingsHeader: FC = () => {
   const { platform } = useTelegramFullscreen();
+
+  const languageState = useLanguageStore((state) => state.state);
 
   return (
     <IonHeader translucent={true}>
       {platform === "android" && <IonToolbar />}
       <IonToolbar>
-        <IonTitle>{title}</IonTitle>
+        <IonTitle>{languageState.pages.settings.title}</IonTitle>
       </IonToolbar>
     </IonHeader>
   );

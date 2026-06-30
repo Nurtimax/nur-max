@@ -4,6 +4,7 @@ import MealCard from "../../../components/meals/MealCard";
 import { useFoodsStore } from "../../../store/foods.store";
 import { IMealAction, MealDay } from "../../../@types/meal.types";
 import { FC } from "react";
+import { useLanguageStore } from "../../../store/language.store";
 
 interface IProps {
   title: string;
@@ -24,11 +25,22 @@ const HomeContent: FC<IProps> = ({ title }) => {
     toggleFoodsComplete(data.day, action.key);
   };
 
+  const language = useLanguageStore((state) => state.language);
+
+  const languageState = useLanguageStore((state) => state.state);
+
   return (
     <IonContent fullscreen>
       <ContentTitle title={title} />
 
-      {findFood && <MealCard data={findFood} updateComplete={updateComplete} />}
+      {findFood && (
+        <MealCard
+          data={findFood}
+          updateComplete={updateComplete}
+          language={language}
+          state={languageState.meal_card}
+        />
+      )}
     </IonContent>
   );
 };

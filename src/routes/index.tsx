@@ -1,18 +1,11 @@
-import {
-  IonIcon,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-} from "@ionic/react";
+import { IonRouterOutlet, IonTabs } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router";
 import HomePage from "../pages/home/page";
 import ProfilePage from "../pages/profile/page";
-import { people, pizza, home, settings } from "ionicons/icons";
 import FoodsPage from "../pages/foods/page";
 import SettingsPage from "../pages/settings/page";
+import BottomTabBar from "../components/tabbar/BottomTabBar";
 
 const AppRouters = () => {
   return (
@@ -35,24 +28,7 @@ const AppRouters = () => {
             <Redirect to="/home" />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/home">
-            <IonIcon aria-hidden="true" icon={home} />
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="foods" href="/foods">
-            <IonIcon aria-hidden="true" icon={pizza} />
-            <IonLabel>Foods</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="profile" href="/profile">
-            <IonIcon aria-hidden="true" icon={people} />
-            <IonLabel>Profile</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="settings" href="/settings">
-            <IonIcon aria-hidden="true" icon={settings} />
-            <IonLabel>Settings</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
+        <BottomTabBar />
       </IonTabs>
     </IonReactRouter>
   );

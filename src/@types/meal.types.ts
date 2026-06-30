@@ -1,13 +1,15 @@
 // src/types/meal.types.ts
 
+import { ELanguage } from "./language.type";
+
 export interface MealDayAction {
-  name: string;
+  name: Record<ELanguage, string>;
   complete: boolean;
-  vegetables: string[];
-  ingredients: string[];
+  vegetables: Record<ELanguage, string>[];
+  ingredients: Record<ELanguage, string>[];
   isFried: boolean;
   isDietary: boolean;
-  dietaryNote: string;
+  dietaryNote: Record<ELanguage, string>;
 }
 
 export interface MealDay {

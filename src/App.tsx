@@ -36,7 +36,7 @@ import FoodProvider from "./providers/FoodProvider";
 import TelegramProvider from "./providers/TelegramProvider";
 import ThemeProvider from "./providers/ThemeProvider";
 
-setupIonicReact({ mode: "ios", backButtonText: "Назад" });
+setupIonicReact({ mode: "ios" });
 
 const App: React.FC = () => (
   <IonApp>

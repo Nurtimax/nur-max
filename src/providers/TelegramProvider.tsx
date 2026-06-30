@@ -1,14 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, ReactNode, useEffect, useState } from "react";
-import InitializingContent from "../components/initializing/Content";
+import { FC, ReactNode, useEffect } from "react";
 
 interface IProps {
   children: ReactNode;
 }
 
 const TelegramProvider: FC<IProps> = ({ children }) => {
-  const [isReady, setIsReady] = useState(false);
-
   useEffect(() => {
     const initializeApp = async () => {
       try {
@@ -33,20 +30,13 @@ const TelegramProvider: FC<IProps> = ({ children }) => {
         } else {
           console.log("ℹ️ Not in Telegram");
         }
-
-        setIsReady(true);
       } catch (error) {
         console.warn("Telegram initialization error:", error);
-        setIsReady(true);
       }
     };
 
     initializeApp();
   }, []);
-
-  if (!isReady) {
-    return <InitializingContent />;
-  }
 
   return <>{children}</>;
 };
