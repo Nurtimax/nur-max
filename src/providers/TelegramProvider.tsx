@@ -1,135 +1,83 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, ReactNode, useEffect } from "react";
+import {
+  getWebApp,
+  initTelegramApp,
+  isTelegram,
+  syncTelegramCssVars,
+} from "../utils/helpers/telegram.helper";
+import { useSettings } from "../store/settings.store";
+import { useUserStore } from "../store/user.store";
+import { useLanguageStore } from "../store/language.store";
+import { ELanguage } from "../@types/language.type";
 
 interface IProps {
   children: ReactNode;
 }
 
+/** Telegram'дын тил кодун колдонмонун тилине айландырат */
+const toAppLanguage = (code?: string): ELanguage | null => {
+  if (!code) return null;
+  if (code.startsWith("ky")) return ELanguage.KG;
+  if (code.startsWith("ru")) return ELanguage.RU;
+  if (code.startsWith("en")) return ELanguage.EN;
+  return null;
+};
+
 const TelegramProvider: FC<IProps> = ({ children }) => {
   useEffect(() => {
-    const initializeApp = async () => {
-      try {
-        console.log("🔄 Initializing Telegram...");
+    const webApp = getWebApp();
+    if (!webApp || !isTelegram()) return;
 
-        // 1. Проверяем окружение
-        const isTelegram = !!(window as any).Telegram?.WebApp;
+    initTelegramApp();
 
-        if (isTelegram) {
-          console.log("✅ Running in Telegram");
+    // Тема: колдонуучу өзү тандамайынча Telegram'дын темасын ээрчийбиз
+    const settings = useSettings.getState();
+    if (!settings.isThemeManual) {
+      settings.setDarkMode(webApp.colorScheme === "dark");
+    }
 
-          // 2. Отправляем событие готовности
-          sendTelegramEvent("web_app_ready");
-          console.log("✅ web_app_ready sent");
+    // Профилди Telegram аккаунтунан толтуруу (бош болсо гана)
+    const tgUser = webApp.initDataUnsafe?.user;
+    if (tgUser) {
+      const { user, setUser } = useUserStore.getState();
+      if (!user?.name) {
+        setUser({
+          ...user,
+          name: [tgUser.first_name, tgUser.last_name].filter(Boolean).join(" "),
+          email: user?.email ?? "",
+          photoUrl: user?.photoUrl,
+        });
+      }
 
-          // 3. Запрашиваем fullscreen
-          await requestFullscreenNative();
+      const language = toAppLanguage(tgUser.language_code);
+      const languageStore = useLanguageStore.getState();
+      if (language && !languageStore.isLanguageManual) {
+        languageStore.setLanguage(language, false);
+      }
+    }
 
-          // 4. Расширяем Mini App
-          sendTelegramEvent("web_app_expand");
-          console.log("✅ web_app_expand sent");
-        } else {
-          console.log("ℹ️ Not in Telegram");
-        }
-      } catch (error) {
-        console.warn("Telegram initialization error:", error);
+    const onThemeChanged = () => {
+      syncTelegramCssVars();
+      const state = useSettings.getState();
+      if (!state.isThemeManual) {
+        state.setDarkMode(webApp.colorScheme === "dark");
       }
     };
 
-    initializeApp();
+    webApp.onEvent?.("themeChanged", onThemeChanged);
+    webApp.onEvent?.("viewportChanged", syncTelegramCssVars);
+    webApp.onEvent?.("safeAreaChanged", syncTelegramCssVars);
+    webApp.onEvent?.("contentSafeAreaChanged", syncTelegramCssVars);
+
+    return () => {
+      webApp.offEvent?.("themeChanged", onThemeChanged);
+      webApp.offEvent?.("viewportChanged", syncTelegramCssVars);
+      webApp.offEvent?.("safeAreaChanged", syncTelegramCssVars);
+      webApp.offEvent?.("contentSafeAreaChanged", syncTelegramCssVars);
+    };
   }, []);
 
   return <>{children}</>;
-};
-
-// Функция для отправки событий в Telegram
-const sendTelegramEvent = (eventType: string, eventData?: any) => {
-  const data = JSON.stringify({
-    eventType,
-    eventData: eventData || {},
-  });
-
-  // Web версия
-  if (window.parent && window.parent !== window) {
-    try {
-      window.parent.postMessage(data, "https://web.telegram.org");
-      console.log(`📤 Sent via postMessage: ${eventType}`);
-      return;
-    } catch (e) {
-      console.warn("postMessage failed:", e);
-    }
-  }
-
-  // Desktop/Mobile версия
-  const proxy = (window as any).TelegramWebviewProxy;
-  if (proxy?.postEvent) {
-    try {
-      const params = eventData ? JSON.stringify(eventData) : "{}";
-      proxy.postEvent(eventType, params);
-      console.log(`📤 Sent via TelegramWebviewProxy: ${eventType}`);
-      return;
-    } catch (e) {
-      console.warn("TelegramWebviewProxy failed:", e);
-    }
-  }
-
-  // Windows Phone версия
-  if ((window as any).external?.notify) {
-    try {
-      (window as any).external.notify(data);
-      console.log(`📤 Sent via external.notify: ${eventType}`);
-      return;
-    } catch (e) {
-      console.warn("external.notify failed:", e);
-    }
-  }
-
-  console.warn(`⚠️ Could not send event: ${eventType}`);
-};
-
-// Функция запроса fullscreen
-const requestFullscreenNative = async (): Promise<boolean> => {
-  return new Promise((resolve) => {
-    try {
-      // Проверяем поддержку fullscreen
-      const webApp = (window as any).Telegram?.WebApp;
-
-      if (webApp?.isFullscreen !== undefined) {
-        // Если уже в fullscreen
-        if (webApp.isFullscreen) {
-          console.log("✅ Already in fullscreen");
-          resolve(true);
-          return;
-        }
-
-        // Отправляем запрос fullscreen
-        sendTelegramEvent("web_app_request_fullscreen");
-
-        // Проверяем статус fullscreen с интервалом
-        let attempts = 0;
-        const interval = setInterval(() => {
-          attempts++;
-          if (webApp.isFullscreen) {
-            clearInterval(interval);
-            console.log("✅ Fullscreen activated");
-            resolve(true);
-          } else if (attempts >= 10) {
-            clearInterval(interval);
-            console.log("ℹ️ Fullscreen not activated after 10 attempts");
-            resolve(false);
-          }
-        }, 200);
-
-        return;
-      }
-
-      // Если WebApp не доступен
-      console.log("ℹ️ Fullscreen not supported");
-      resolve(false);
-    } catch (error) {
-      console.warn("Fullscreen request error:", error);
-      resolve(false);
-    }
-  });
 };
 
 export default TelegramProvider;

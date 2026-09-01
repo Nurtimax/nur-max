@@ -1,99 +1,121 @@
-import {
-  IonIcon,
-  IonItem,
-  IonItemDivider,
-  IonItemOption,
-  IonItemOptions,
-  IonItemSliding,
-  IonLabel,
-  IonList,
-} from "@ionic/react";
-import { FC } from "react";
-import {
-  leafOutline,
-  moonOutline,
-  pizza,
-  restaurantOutline,
-  sunnyOutline,
-  trash,
-} from "ionicons/icons";
+import { IonIcon } from "@ionic/react";
+import { chevronDown } from "ionicons/icons";
+import { FC, useState } from "react";
 import { IMealAction, MealDay } from "../../@types/meal.types";
-import classes from "./index.module.css";
 import { ELanguage, ILanguagesStateMealCard } from "../../@types/language.type";
-import { getDayLabel } from "../../utils/constants/language/index.constant";
+import { getMealActions } from "../../utils/constants/meal-card.constant";
+import {
+  countCompleted,
+  countTotal,
+  getDayPlanPrice,
+  getTodayNumber,
+} from "../../utils/helpers/week.helper";
+import {
+  getDateLabel,
+  getWeekdayLabel,
+} from "../../utils/constants/language/index.constant";
+import { haptic } from "../../utils/helpers/telegram.helper";
+import { useLanguageStore } from "../../store/language.store";
+import { useBudgetStore } from "../../store/budget.store";
+import { formatMoney } from "../../utils/helpers/budget.helper";
+import MealRow from "./MealRow";
+import ProgressRing from "./ProgressRing";
+import classes from "./index.module.css";
 
 interface IProps {
   data: MealDay;
   updateComplete?: (data: MealDay, action: IMealAction) => void;
   language: ELanguage;
   state: ILanguagesStateMealCard;
+  /** Аталышын басканда жыйылып-ачылабы */
+  collapsible?: boolean;
+  defaultOpen?: boolean;
 }
 
-const MealCard: FC<IProps> = ({ data, updateComplete, language, state }) => {
-  const handleCheckboxClick = async (action: IMealAction) => {
-    updateComplete?.(data, action);
+const MealCard: FC<IProps> = ({
+  data,
+  updateComplete,
+  language,
+  state,
+  collapsible = false,
+  defaultOpen = true,
+}) => {
+  const [open, setOpen] = useState(defaultOpen);
+
+  const currency = useLanguageStore((store) => store.state.common.currency);
+  const planLabel = useLanguageStore((store) => store.state.pages.budget.plan);
+  const dailyLimit = useBudgetStore((store) => store.dailyLimit);
+
+  const actions = getMealActions(state);
+  const planPrice = getDayPlanPrice(data);
+  const isOverLimit = dailyLimit > 0 && planPrice > dailyLimit;
+  const done = countCompleted(data);
+  const total = countTotal(data);
+  const isToday = data.day === getTodayNumber();
+
+  const handleHeaderClick = () => {
+    if (!collapsible) return;
+    haptic("soft");
+    setOpen((prev) => !prev);
   };
 
-  const FOOD_ACTIONS: IMealAction[] = [
-    {
-      key: "breakfast",
-      title: state.breakfast,
-      icon: sunnyOutline,
-      color: "warning",
-    },
-    {
-      key: "lunch",
-      title: state.lunch,
-      icon: restaurantOutline,
-      color: "primary",
-    },
-    { key: "dinner", title: state.dinner, icon: moonOutline, color: "dark" },
-    { key: "snack", title: state.snack, icon: pizza, color: "secondary" },
-    {
-      key: "fruit",
-      title: state.fruit,
-      icon: leafOutline,
-      color: "success",
-    },
-  ];
-
-  console.log(FOOD_ACTIONS, "FOOD_ACTIONS", state, "state");
-
   return (
-    <IonList inset className={classes.list}>
-      <IonItemDivider>
-        <IonLabel>{getDayLabel(data.day, language)}</IonLabel>
-      </IonItemDivider>
+    <section
+      className={`${classes.card} ${isToday ? classes.cardToday : ""}`}
+      aria-label={getWeekdayLabel(data.day, language)}
+    >
+      <header
+        className={`${classes.cardHead} ${collapsible ? classes.cardHeadButton : ""}`}
+        onClick={handleHeaderClick}
+      >
+        <div className={classes.cardDay}>
+          <span className={classes.cardDayNumber}>{data.day}</span>
+        </div>
 
-      {FOOD_ACTIONS.map((action) => (
-        <IonItemSliding>
-          <IonItem
-            button
-            className={classes.ionItem}
-            disabled={data[action.key]?.complete}
-          >
-            <IonIcon icon={action.icon} color={action.color} />
-            <IonLabel className={classes.ionLabel}>
-              <p>{action.title}</p>
-              <h2 style={{ margin: 0 }}>{data[action.key]?.name[language]}</h2>
-            </IonLabel>
-          </IonItem>
-          <IonItemOptions slot="end">
-            <IonItemOption
-              color="light"
-              expandable={true}
-              onClick={() => handleCheckboxClick(action)}
+        <div className={classes.cardHeadText}>
+          <h2 className={classes.cardWeekday}>
+            {getWeekdayLabel(data.day, language)}
+          </h2>
+          <p className={classes.cardDate}>
+            {getDateLabel(data.day, language)}
+            <span
+              className={`${classes.cardPrice} ${
+                isOverLimit ? classes.cardPriceOver : ""
+              }`}
+              title={planLabel}
             >
-              <IonIcon
-                slot="icon-only"
-                color={data[action.key]?.complete ? "success" : "danger"}
-                icon={trash}
-              ></IonIcon>
-            </IonItemOption>
-          </IonItemOptions>
-        </IonItemSliding>
-      ))}
-    </IonList>
+              {formatMoney(planPrice, currency)}
+            </span>
+          </p>
+        </div>
+
+        <ProgressRing value={done} total={total} size={46} stroke={5} />
+
+        {collapsible && (
+          <IonIcon
+            icon={chevronDown}
+            className={`${classes.cardChevron} ${open ? classes.cardChevronOpen : ""}`}
+          />
+        )}
+      </header>
+
+      {open && (
+        <div className={classes.cardBody}>
+          {actions.map((action) => (
+            <MealRow
+              key={action.key}
+              action={action}
+              meal={data[action.key]}
+              day={data.day}
+              language={language}
+              state={state}
+              currency={currency}
+              onToggle={(meal) => updateComplete?.(data, meal)}
+            />
+          ))}
+        </div>
+      )}
+    </section>
   );
 };
 

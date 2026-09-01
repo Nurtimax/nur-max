@@ -1,29 +1,59 @@
 import { IonIcon, IonLabel, IonTabBar, IonTabButton } from "@ionic/react";
-import { home, people, pizza, settings } from "ionicons/icons";
+import {
+  homeOutline,
+  personOutline,
+  restaurantOutline,
+  settingsOutline,
+  walletOutline,
+} from "ionicons/icons";
 import { useLanguageStore } from "../../store/language.store";
+import { hapticSelection } from "../../utils/helpers/telegram.helper";
 
 const BottomTabBar = () => {
   const languageState = useLanguageStore((state) => state.state);
-
   const pages = languageState.pages;
+
+  const tabs = [
+    { tab: "home", href: "/home", icon: homeOutline, label: pages.home.title },
+    {
+      tab: "foods",
+      href: "/foods",
+      icon: restaurantOutline,
+      label: pages.food.title,
+    },
+    {
+      tab: "budget",
+      href: "/budget",
+      icon: walletOutline,
+      label: pages.budget.title,
+    },
+    {
+      tab: "profile",
+      href: "/profile",
+      icon: personOutline,
+      label: pages.profile.title,
+    },
+    {
+      tab: "settings",
+      href: "/settings",
+      icon: settingsOutline,
+      label: pages.settings.title,
+    },
+  ];
+
   return (
     <IonTabBar slot="bottom">
-      <IonTabButton tab="home" href="/home">
-        <IonIcon aria-hidden="true" icon={home} />
-        <IonLabel>{pages.home.title}</IonLabel>
-      </IonTabButton>
-      <IonTabButton tab="foods" href="/foods">
-        <IonIcon aria-hidden="true" icon={pizza} />
-        <IonLabel>{pages.food.title}</IonLabel>
-      </IonTabButton>
-      <IonTabButton tab="profile" href="/profile">
-        <IonIcon aria-hidden="true" icon={people} />
-        <IonLabel>{pages.profile.title}</IonLabel>
-      </IonTabButton>
-      <IonTabButton tab="settings" href="/settings">
-        <IonIcon aria-hidden="true" icon={settings} />
-        <IonLabel>{pages.settings.title}</IonLabel>
-      </IonTabButton>
+      {tabs.map((item) => (
+        <IonTabButton
+          key={item.tab}
+          tab={item.tab}
+          href={item.href}
+          onClick={() => hapticSelection()}
+        >
+          <IonIcon aria-hidden="true" icon={item.icon} />
+          <IonLabel>{item.label}</IonLabel>
+        </IonTabButton>
+      ))}
     </IonTabBar>
   );
 };

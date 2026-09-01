@@ -1,11 +1,14 @@
 import { IonPage } from "@ionic/react";
-import SettingsHeader from "./components/Header";
 import SettingsContent from "./components/Content";
+import AppHeader from "../../components/layout/AppHeader";
+import { useLanguageStore } from "../../store/language.store";
 
 const SettingsPage = () => {
+  const languageState = useLanguageStore((state) => state.state);
+
   return (
     <IonPage>
-      <SettingsHeader />
+      <AppHeader title={languageState.pages.settings.title} />
       <SettingsContent />
     </IonPage>
   );

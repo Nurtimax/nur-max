@@ -1,23 +1,17 @@
-import { IonContent, IonHeader, IonTitle, IonToolbar } from "@ionic/react";
-import HomeMealList from "../../../components/meals/MealList";
-import { useFoodsStore } from "../../../store/foods.store";
+import { IonContent } from "@ionic/react";
 import { FC } from "react";
+import MealWeekList from "../../../components/meals/MealList";
+import { useFoodsStore } from "../../../store/foods.store";
+import classes from "../page.module.css";
 
-interface IProps {
-  title: string;
-}
-const FoodsContent: FC<IProps> = ({ title }) => {
+const FoodsContent: FC = () => {
   const foods = useFoodsStore((state) => state.foods);
 
   return (
     <IonContent fullscreen>
-      <IonHeader collapse="condense">
-        <IonToolbar>
-          <IonTitle size="large">{title}</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-
-      <HomeMealList list={foods} />
+      <div className={classes.content}>
+        <MealWeekList list={foods} />
+      </div>
     </IonContent>
   );
 };

@@ -1,48 +1,34 @@
-.profileContainer {
-  height: 35%;
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nm-gap-lg);
+  padding: 10px 16px 30px;
+}
 
-  background: var(--ion-color-light) !important;
+.profileContainer {
+  position: relative;
+  padding: 26px 20px 22px;
+  border-radius: var(--nm-radius-xl);
+  background: var(--nm-surface);
+  border: 1px solid var(--nm-border);
+  box-shadow: var(--nm-shadow-md);
+  overflow: hidden;
 }
 
 .avatarBackgroundContainer {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-
-  position: relative;
-}
-
-.toolbar {
-  background: var(--ion-color-light) !important;
-  border: none !important;
-  --border-color: transparent !important;
-  box-shadow: none !important;
-  position: absolute !important;
-}
-
-.avatar {
-  width: 25vh;
-  height: 25vh;
-  aspect-ratio: 1 / 1;
-
-  position: absolute;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 0.5rem;
+  gap: 10px;
 }
 
 .avatarBackground {
-  background: var(--ion-color-light) !important;
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
 }
 
 .avatarBackground img {
@@ -50,14 +36,48 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: blur(3px);
-  -webkit-filter: blur(3px);
+  filter: blur(26px) saturate(1.3);
+  -webkit-filter: blur(26px) saturate(1.3);
+  opacity: 0.45;
+  transform: scale(1.25);
+}
+
+.avatar {
+  width: 104px;
+  height: 104px;
+  aspect-ratio: 1 / 1;
+  border: 3px solid var(--nm-surface);
+  box-shadow: var(--nm-shadow-md);
+}
+
+.name {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: var(--nm-text);
+}
+
+.email {
+  margin: 0;
+  font-size: 13px;
+  color: var(--nm-text-muted);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.label {
+  margin: 0 0 -6px 4px;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  color: var(--nm-text-muted);
 }
 
 .profileContentForm {
-  padding: 0 1rem;
-  height: 40vh;
-
-  display: flex;
-  align-items: center;
+  padding: 0;
 }

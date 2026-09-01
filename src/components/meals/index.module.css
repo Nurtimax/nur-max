@@ -1,7 +1,542 @@
-.ionItem {
-  --padding-start: 0;
+/* ================= Апталар ================= */
+.weeks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nm-gap-md);
+  padding: 4px 0 0;
 }
 
-.ionLabel {
-  margin-inline-start: 0.5rem !important;
+.weekTabs {
+  display: flex;
+  gap: var(--nm-gap-sm);
+  overflow-x: auto;
+  padding: 4px 16px 6px;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+}
+
+.weekTabs::-webkit-scrollbar {
+  display: none;
+}
+
+.weekTab {
+  flex: 0 0 auto;
+  min-width: 92px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 14px;
+  border: 1px solid var(--nm-border);
+  border-radius: var(--nm-radius-md);
+  background: var(--nm-surface);
+  color: var(--nm-text-soft);
+  box-shadow: var(--nm-shadow-sm);
+  scroll-snap-align: start;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    color 0.18s ease;
+  cursor: pointer;
+}
+
+.weekTab:active {
+  transform: scale(0.97);
+}
+
+.weekTabActive {
+  background: var(--nm-brand-gradient);
+  border-color: transparent;
+  color: var(--nm-text-inverse);
+  box-shadow: var(--nm-shadow-md);
+}
+
+.weekTabTitle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.weekTabDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--nm-radius-pill);
+  background: var(--nm-meal-breakfast);
+}
+
+.weekTabActive .weekTabDot {
+  background: var(--nm-text-inverse);
+}
+
+.weekTabRange {
+  font-size: 11px;
+  opacity: 0.75;
+}
+
+.weekTabBar {
+  display: block;
+  height: 3px;
+  border-radius: var(--nm-radius-pill);
+  background: var(--nm-surface-sunken);
+  overflow: hidden;
+}
+
+.weekTabActive .weekTabBar {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.weekTabBarFill {
+  display: block;
+  height: 100%;
+  border-radius: var(--nm-radius-pill);
+  background: var(--nm-brand);
+  transition: width 0.3s ease;
+}
+
+.weekTabActive .weekTabBarFill {
+  background: var(--nm-text-inverse);
+}
+
+.weekSummary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.weekTitle {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--nm-text);
+}
+
+.weekCount {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--nm-text-muted);
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nm-gap-sm);
+  padding: 0 16px;
+}
+
+.empty {
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--nm-text-muted);
+}
+
+/* ================= Күн картасы ================= */
+.card {
+  border-radius: var(--nm-radius-lg);
+  background: var(--nm-surface);
+  border: 1px solid var(--nm-border);
+  box-shadow: var(--nm-shadow-sm);
+  overflow: hidden;
+}
+
+.cardToday {
+  border-color: color-mix(in srgb, var(--nm-brand) 45%, transparent);
+  box-shadow: var(--nm-shadow-md);
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: var(--nm-gap-sm);
+  padding: 14px 16px;
+}
+
+.cardHeadButton {
+  cursor: pointer;
+  user-select: none;
+}
+
+.cardDay {
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--nm-radius-sm);
+  background: var(--nm-brand-soft);
+  color: var(--nm-brand);
+}
+
+.cardToday .cardDay {
+  background: var(--nm-brand-gradient);
+  color: var(--nm-text-inverse);
+}
+
+.cardDayNumber {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.cardHeadText {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.cardWeekday {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--nm-text);
+}
+
+.cardDate {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 3px 0 0;
+  font-size: 12.5px;
+  color: var(--nm-text-muted);
+}
+
+.cardPrice {
+  padding: 2px 8px;
+  border-radius: var(--nm-radius-pill);
+  background: var(--nm-brand-soft);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--nm-brand);
+}
+
+.cardPriceOver {
+  background: color-mix(in srgb, var(--nm-meal-lunch) 16%, transparent);
+  color: var(--nm-meal-lunch);
+}
+
+.cardChevron {
+  font-size: 18px;
+  color: var(--nm-text-muted);
+  transition: transform 0.2s ease;
+}
+
+.cardChevronOpen {
+  transform: rotate(180deg);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 10px 12px;
+}
+
+/* ================= Тамак сабы ================= */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px;
+  border-radius: var(--nm-radius-md);
+  background: var(--nm-surface-muted);
+  transition: opacity 0.2s ease;
+}
+
+.rowDone {
+  opacity: 0.5;
+}
+
+.rowDone .rowName {
+  text-decoration: line-through;
+}
+
+.rowIcon {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--nm-radius-sm);
+  background: color-mix(in srgb, var(--row-accent) 16%, transparent);
+  color: var(--row-accent);
+  font-size: 19px;
+}
+
+.rowText {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.rowKind {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--nm-text-muted);
+}
+
+.rowName {
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--nm-text);
+}
+
+.rowPrice {
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 3px 9px;
+  border: 0;
+  border-radius: var(--nm-radius-pill);
+  background: var(--nm-brand-soft);
+  font-size: 12.5px;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  color: var(--nm-brand);
+  cursor: pointer;
+  transition: transform 0.18s ease;
+}
+
+.rowPrice:active {
+  transform: scale(0.94);
+}
+
+/* Сумманы колдонуучу өзү жазат */
+.rowPriceEdit {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  padding: 2px 9px;
+  border-radius: var(--nm-radius-pill);
+  background: var(--nm-surface);
+  border: 1.5px solid var(--nm-brand);
+}
+
+.rowPriceInput {
+  width: 58px;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 750;
+  color: var(--nm-text);
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.rowPriceInput::-webkit-outer-spin-button,
+.rowPriceInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.rowPriceCurrency {
+  font-size: 11.5px;
+  font-weight: 650;
+  color: var(--nm-text-muted);
+}
+
+.rowReplace {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--nm-border);
+  border-radius: var(--nm-radius-pill);
+  background: var(--nm-surface);
+  color: var(--nm-text-soft);
+  font-size: 16px;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    color 0.18s ease;
+}
+
+.rowReplace:active {
+  transform: rotate(180deg);
+  color: var(--nm-brand);
+}
+
+.check {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--nm-radius-pill);
+  border: 1.5px solid var(--nm-border-strong);
+  background: transparent;
+  color: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.check:active {
+  transform: scale(0.9);
+}
+
+.checkDone {
+  background: var(--nm-brand);
+  border-color: var(--nm-brand);
+  color: var(--nm-text-inverse);
+}
+
+/* ================= Прогресс тегереги ================= */
+.ring {
+  position: relative;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+}
+
+.ringSvg {
+  transform: rotate(-90deg);
+}
+
+.ringTrack {
+  fill: none;
+  stroke: var(--nm-surface-sunken);
+}
+
+.ringValue {
+  fill: none;
+  stroke: var(--nm-brand);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.4s ease;
+}
+
+.ringContent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+}
+
+.ringLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--nm-text);
+}
+
+.ringSublabel {
+  font-size: 9px;
+  color: var(--nm-text-muted);
+}
+
+.ringInverse .ringTrack {
+  stroke: rgba(255, 255, 255, 0.28);
+}
+
+.ringInverse .ringValue {
+  stroke: var(--nm-text-inverse);
+}
+
+.ringInverse .ringLabel,
+.ringInverse .ringSublabel {
+  color: var(--nm-text-inverse);
+}
+
+/* ================= Күндөрдүн тилкеси ================= */
+.strip {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 2px 16px 8px;
+  scrollbar-width: none;
+}
+
+.strip::-webkit-scrollbar {
+  display: none;
+}
+
+.stripItem {
+  flex: 1 1 0;
+  min-width: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 9px 6px 8px;
+  border-radius: var(--nm-radius-md);
+  border: 1px solid var(--nm-border);
+  background: var(--nm-surface);
+  color: var(--nm-text-soft);
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.stripItem:active {
+  transform: scale(0.95);
+}
+
+.stripItemActive {
+  background: var(--nm-brand-gradient);
+  border-color: transparent;
+  color: var(--nm-text-inverse);
+  box-shadow: var(--nm-shadow-md);
+}
+
+.stripWeekday {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  opacity: 0.8;
+}
+
+.stripDay {
+  font-size: 16px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.stripDot {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--nm-radius-pill);
+  background: var(--nm-border-strong);
+}
+
+.stripDotPartial {
+  background: var(--nm-meal-breakfast);
+}
+
+.stripDotDone {
+  background: var(--nm-brand);
+}
+
+.stripItemActive .stripDot {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.stripItemActive .stripDotDone,
+.stripItemActive .stripDotPartial {
+  background: var(--nm-text-inverse);
+}
+
+.stripDotToday {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--nm-brand) 40%, transparent);
 }

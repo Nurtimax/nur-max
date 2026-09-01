@@ -1,9 +1,10 @@
 import { IonButton, IonInput, useIonToast } from "@ionic/react";
 import { useFormik } from "formik";
+import { backspace } from "ionicons/icons";
 import classes from "../page.module.css";
 import { User, useUserStore } from "../../../store/user.store";
-import { backspace } from "ionicons/icons";
 import { useLanguageStore } from "../../../store/language.store";
+import { hapticSuccess } from "../../../utils/helpers/telegram.helper";
 
 const ProfileContentForm = () => {
   const setUser = useUserStore((state) => state.setUser);
@@ -15,11 +16,13 @@ const ProfileContentForm = () => {
   const [present] = useIonToast();
 
   const formik = useFormik<User>({
+    enableReinitialize: true,
     initialValues: user || { email: "", name: "", photoUrl: "" },
     onSubmit: (values, { resetForm }) => {
       try {
         setUser(values);
-        resetForm({ values: values });
+        resetForm({ values });
+        hapticSuccess();
 
         present({
           message: t.save_success,
@@ -39,6 +42,7 @@ const ProfileContentForm = () => {
 
   return (
     <form onSubmit={formik.handleSubmit} className={classes.form}>
+      <p className={classes.label}>{t.name}</p>
       <IonInput
         name="name"
         onChange={formik.handleChange}
@@ -50,6 +54,8 @@ const ProfileContentForm = () => {
         clearInput
         clearInputIcon={backspace}
       />
+
+      <p className={classes.label}>{t.email}</p>
       <IonInput
         name="email"
         onChange={formik.handleChange}
@@ -61,6 +67,8 @@ const ProfileContentForm = () => {
         clearInput
         clearInputIcon={backspace}
       />
+
+      <p className={classes.label}>{t.photo_url}</p>
       <IonInput
         name="photoUrl"
         onChange={formik.handleChange}
@@ -73,7 +81,12 @@ const ProfileContentForm = () => {
         clearInputIcon={backspace}
       />
 
-      <IonButton type="submit" color="success" disabled={!formik.dirty}>
+      <IonButton
+        type="submit"
+        expand="block"
+        color="primary"
+        disabled={!formik.dirty}
+      >
         {t.save}
       </IonButton>
     </form>

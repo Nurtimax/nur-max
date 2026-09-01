@@ -6,36 +6,42 @@ import { useFoodsStore } from "../store/foods.store";
 interface FoodProviderProps {
   children: React.ReactNode;
 }
+
+/** Учурдагы айдын ачкычы: "2026-09" */
+const getMonthKey = (date = new Date()) =>
+  `${date.getFullYear()}-${`${date.getMonth() + 1}`.padStart(2, "0")}`;
+
 const FoodProvider: FC<FoodProviderProps> = ({ children }) => {
-  console.log("FoodProvider rendered");
+  const monthKey = getMonthKey();
 
-  const now = new Date();
-  const day = now.getDate();
-
-  const toggleFoodsLoading = useFoodsStore((state) => state.toggleFoodsLoading);
   const setFoods = useFoodsStore((state) => state.setFoods);
-  const isUpdated = useFoodsStore((state) => state.isUpdate);
+  const setCatalog = useFoodsStore((state) => state.setCatalog);
+  const setVersion = useFoodsStore((state) => state.setVersion);
+  const setSyncedMonth = useFoodsStore((state) => state.setSyncedMonth);
   const updateIsUpdate = useFoodsStore((state) => state.updateIsUpdate);
-  const version = useFoodsStore((state) => state.version);
-  const serVersion = useFoodsStore((state) => state.setVersion);
 
   useQuery({
-    queryKey: ["foods"],
+    queryKey: ["foods", monthKey],
     queryFn: async () => {
-      toggleFoodsLoading();
       const response = await getFoods();
-      if (response.version !== version) {
-        serVersion(response.version);
-      } else if (day !== 1) {
-        if (isUpdated) {
-          return null; // Skip fetching if data is already updated
-        }
+
+      const { version, syncedMonth, catalog } = useFoodsStore.getState();
+      const isNewVersion = response.version !== version;
+      // План ай сайын бир жолу гана жаңыртылат — алмаштыруулар менен
+      // белгилер айдын ичинде сакталып турушу үчүн
+      const isNewMonth = syncedMonth !== monthKey;
+
+      if (isNewVersion || isNewMonth) {
+        setFoods(response.list);
+        setCatalog(response.catalog ?? null);
+        setVersion(response.version);
+        setSyncedMonth(monthKey);
+        updateIsUpdate(true);
+      } else if (!catalog && response.catalog) {
+        // Каталог гана жетишпей турса — планды тийбей толуктайбыз
+        setCatalog(response.catalog);
       }
 
-      toggleFoodsLoading();
-
-      setFoods(response.list);
-      updateIsUpdate(true);
       return response;
     },
     initialData: null,

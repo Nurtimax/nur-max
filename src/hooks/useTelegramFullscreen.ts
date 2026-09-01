@@ -1,28 +1,59 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // hooks/useTelegramFullscreen.ts
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import {
+  getWebApp,
+  isTelegram,
+  syncTelegramCssVars,
+} from "../utils/helpers/telegram.helper";
 
-const tg = window.Telegram?.WebApp as any;
+interface TelegramState {
+  platform: string | null;
+  isFullscreen: boolean;
+  isTelegram: boolean;
+  colorScheme: "light" | "dark" | null;
+}
 
-export const useTelegramFullscreen = () => {
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const [platform, setPlatform] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!tg) {
-      return;
-    }
-
-    const init = () => {
-      setIsFullscreen(tg.isFullscreen || false);
-      setPlatform(tg.platform || null);
-    };
-
-    init();
-  }, []);
+const readState = (): TelegramState => {
+  const webApp = getWebApp();
+  const inTelegram = isTelegram();
 
   return {
-    platform,
-    isFullscreen,
+    // Telegramдан тышкары "unknown" келет — аны көрсөтпөйбүз
+    platform: inTelegram ? (webApp?.platform ?? null) : null,
+    isFullscreen: (inTelegram && webApp?.isFullscreen) || false,
+    isTelegram: inTelegram,
+    colorScheme: webApp?.colorScheme ?? null,
   };
+};
+
+export const useTelegramFullscreen = () => {
+  const [state, setState] = useState<TelegramState>(readState);
+
+  useEffect(() => {
+    const webApp = getWebApp();
+    if (!webApp) return;
+
+    const update = () => {
+      syncTelegramCssVars();
+      setState(readState());
+    };
+
+    update();
+
+    webApp.onEvent?.("fullscreenChanged", update);
+    webApp.onEvent?.("viewportChanged", update);
+    webApp.onEvent?.("themeChanged", update);
+    webApp.onEvent?.("safeAreaChanged", update);
+    webApp.onEvent?.("contentSafeAreaChanged", update);
+
+    return () => {
+      webApp.offEvent?.("fullscreenChanged", update);
+      webApp.offEvent?.("viewportChanged", update);
+      webApp.offEvent?.("themeChanged", update);
+      webApp.offEvent?.("safeAreaChanged", update);
+      webApp.offEvent?.("contentSafeAreaChanged", update);
+    };
+  }, []);
+
+  return state;
 };

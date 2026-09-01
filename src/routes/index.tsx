@@ -4,6 +4,7 @@ import { Redirect, Route } from "react-router";
 import HomePage from "../pages/home/page";
 import ProfilePage from "../pages/profile/page";
 import FoodsPage from "../pages/foods/page";
+import BudgetPage from "../pages/budget/page";
 import SettingsPage from "../pages/settings/page";
 import BottomTabBar from "../components/tabbar/BottomTabBar";
 
@@ -20,6 +21,9 @@ const AppRouters = () => {
           </Route>
           <Route exact path="/foods">
             <FoodsPage />
+          </Route>
+          <Route exact path="/budget">
+            <BudgetPage />
           </Route>
           <Route exact path="/settings">
             <SettingsPage />

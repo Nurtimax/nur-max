@@ -3,16 +3,13 @@ import ProfileContentForm from "./ContentForm";
 import classes from "../page.module.css";
 import ProfileContentAvatar from "./ContentAvatar";
 
-const ProfileContent = () => {
-  return (
-    <IonContent fullscreen>
+const ProfileContent = () => (
+  <IonContent fullscreen>
+    <div className={classes.content}>
       <ProfileContentAvatar />
-
-      <div className={classes.profileContentForm}>
-        <ProfileContentForm />
-      </div>
-    </IonContent>
-  );
-};
+      <ProfileContentForm />
+    </div>
+  </IonContent>
+);
 
 export default ProfileContent;

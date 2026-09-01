@@ -35,6 +35,7 @@ import InitializingProvider from "./providers/InitializingProvider";
 import FoodProvider from "./providers/FoodProvider";
 import TelegramProvider from "./providers/TelegramProvider";
 import ThemeProvider from "./providers/ThemeProvider";
+import AddExpenseSheet from "./components/budget/AddExpenseSheet";
 
 setupIonicReact({ mode: "ios" });
 
@@ -46,6 +47,7 @@ const App: React.FC = () => (
           <InitializingProvider>
             <FoodProvider>
               <AppRouters />
+              <AddExpenseSheet />
             </FoodProvider>
           </InitializingProvider>
         </QueryProvider>

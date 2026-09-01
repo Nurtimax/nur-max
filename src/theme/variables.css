@@ -1,19 +1,187 @@
-/* For information on how to create your own theme, please refer to:
-http://ionicframework.com/docs/theming/ */
+/**
+ * NUR MAX — design tokens
+ * Ionic'тин өзгөрмөлөрүнүн үстүнө курулган заманбап тема.
+ * Telegram Mini App'тын түстөрү --tg-* өзгөрмөлөрү аркылуу келет.
+ */
 
-ion-input {
-  --padding-start: 0.5rem !important;
-  --border-color: gray !important;
-  --border-radius: 8px !important;
-  border: 1px solid rgb(66, 66, 66) !important;
-  border-radius: 8px !important;
-  -webkit-border-radius: 8px !important;
-  -moz-border-radius: 8px !important;
-  -ms-border-radius: 8px !important;
-  -o-border-radius: 8px !important;
+:root {
+  /* --- Brand --- */
+  --nm-brand: #17b978;
+  --nm-brand-strong: #0f9c65;
+  --nm-brand-soft: rgba(23, 185, 120, 0.12);
+  --nm-brand-gradient: linear-gradient(135deg, #17b978 0%, #21c7a8 100%);
+
+  /* --- Тамактардын түстөрү --- */
+  --nm-meal-breakfast: #f7a325;
+  --nm-meal-lunch: #ff6b4a;
+  --nm-meal-dinner: #6b73ff;
+  --nm-meal-snack: #e05fa8;
+  --nm-meal-fruit: #17b978;
+
+  /* --- Беттин катмарлары (light) --- */
+  --nm-bg: #f2f4f8;
+  --nm-bg-elevated: #ffffff;
+  --nm-surface: #ffffff;
+  --nm-surface-muted: #f6f8fb;
+  --nm-surface-sunken: #eceff5;
+  --nm-border: rgba(16, 24, 40, 0.08);
+  --nm-border-strong: rgba(16, 24, 40, 0.14);
+
+  /* --- Текст --- */
+  --nm-text: #101828;
+  --nm-text-soft: #475467;
+  --nm-text-muted: #98a2b3;
+  --nm-text-inverse: #ffffff;
+
+  /* --- Көлөкөлөр --- */
+  --nm-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --nm-shadow-md: 0 8px 24px rgba(16, 24, 40, 0.08);
+  --nm-shadow-lg: 0 18px 40px rgba(16, 24, 40, 0.12);
+
+  /* --- Формалар --- */
+  --nm-radius-sm: 12px;
+  --nm-radius-md: 16px;
+  --nm-radius-lg: 22px;
+  --nm-radius-xl: 28px;
+  --nm-radius-pill: 999px;
+
+  /* --- Аралыктар --- */
+  --nm-gap-xs: 6px;
+  --nm-gap-sm: 10px;
+  --nm-gap-md: 16px;
+  --nm-gap-lg: 22px;
+
+  /* --- Telegram коопсуз аймактары (JS'тен жаңырат) --- */
+  --tg-safe-area-inset-top: 0px;
+  --tg-safe-area-inset-bottom: 0px;
+  --tg-content-safe-area-inset-top: 0px;
+  --tg-content-safe-area-inset-bottom: 0px;
+
+  --nm-safe-top: calc(
+    env(safe-area-inset-top, 0px) + var(--tg-safe-area-inset-top) +
+      var(--tg-content-safe-area-inset-top)
+  );
+  --nm-safe-bottom: calc(
+    env(safe-area-inset-bottom, 0px) + var(--tg-safe-area-inset-bottom)
+  );
+
+  /* --- Ionic'ке ыңгайлаштыруу --- */
+  --ion-background-color: var(--nm-bg);
+  --ion-background-color-rgb: 242, 244, 248;
+  --ion-text-color: var(--nm-text);
+  --ion-text-color-rgb: 16, 24, 40;
+  --ion-font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+  --ion-color-primary: #17b978;
+  --ion-color-primary-rgb: 23, 185, 120;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #14a26a;
+  --ion-color-primary-tint: #2ec086;
+}
+
+.ion-palette-dark,
+:root[data-theme="dark"] {
+  --nm-bg: #0e1116;
+  --nm-bg-elevated: #171b22;
+  --nm-surface: #171b22;
+  --nm-surface-muted: #1d222b;
+  --nm-surface-sunken: #10141a;
+  --nm-border: rgba(255, 255, 255, 0.08);
+  --nm-border-strong: rgba(255, 255, 255, 0.16);
+
+  --nm-text: #f2f4f8;
+  --nm-text-soft: #b3bac6;
+  --nm-text-muted: #7c8797;
+  --nm-text-inverse: #0e1116;
+
+  --nm-brand-soft: rgba(23, 185, 120, 0.18);
+
+  --nm-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --nm-shadow-md: 0 10px 26px rgba(0, 0, 0, 0.45);
+  --nm-shadow-lg: 0 20px 44px rgba(0, 0, 0, 0.55);
+
+  --ion-background-color: var(--nm-bg);
+  --ion-background-color-rgb: 14, 17, 22;
+  --ion-text-color: var(--nm-text);
+  --ion-text-color-rgb: 242, 244, 248;
+}
+
+/* --- Базалык стилдер --- */
+body {
+  background: var(--nm-bg);
+  color: var(--nm-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+ion-content {
+  --background: var(--nm-bg);
 }
 
 ion-toolbar {
   --background: transparent !important;
   --border-color: transparent !important;
+  --color: var(--nm-text);
+}
+
+ion-header.header-md::after,
+ion-header.header-ios ion-toolbar:last-of-type {
+  --border-width: 0;
+  background-image: none;
+}
+
+ion-title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* --- Ionic формалары --- */
+ion-input {
+  --background: var(--nm-surface);
+  --color: var(--nm-text);
+  --placeholder-color: var(--nm-text-muted);
+  --padding-start: 14px !important;
+  --padding-end: 14px !important;
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+  border: 1px solid var(--nm-border);
+  border-radius: var(--nm-radius-md);
+  background: var(--nm-surface);
+  box-shadow: var(--nm-shadow-sm);
+}
+
+ion-button {
+  --border-radius: var(--nm-radius-md);
+  --box-shadow: none;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+/* --- Ылдыйкы меню --- */
+ion-tab-bar {
+  --background: color-mix(in srgb, var(--nm-bg-elevated) 88%, transparent);
+  --border: 0;
+  border-top: 1px solid var(--nm-border);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding-bottom: var(--nm-safe-bottom);
+  height: calc(58px + var(--nm-safe-bottom));
+}
+
+ion-tab-button {
+  --color: var(--nm-text-muted);
+  --color-selected: var(--nm-brand);
+  font-weight: 600;
+}
+
+ion-tab-button ion-icon {
+  font-size: 22px;
+}
+
+ion-tab-button ion-label {
+  font-size: 11px;
+  letter-spacing: -0.01em;
 }
