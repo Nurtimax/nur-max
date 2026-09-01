@@ -57,13 +57,33 @@
   --tg-content-safe-area-inset-top: 0px;
   --tg-content-safe-area-inset-bottom: 0px;
 
+  /*
+   * Түзмөктүн коопсуз аймагы: env() менен Telegram'дын мааниси бир эле нерсени
+   * билдирет, ошондуктан кошпой — чоңун алабыз (эки эсе болуп кетпеши үчүн).
+   */
+  --nm-device-top: max(
+    env(safe-area-inset-top, 0px),
+    var(--tg-safe-area-inset-top)
+  );
+  /* Telegram'дын өз баскычтарынын бийиктиги гана үстүнө кошулат */
   --nm-safe-top: calc(
-    env(safe-area-inset-top, 0px) + var(--tg-safe-area-inset-top) +
-      var(--tg-content-safe-area-inset-top)
+    var(--nm-device-top) + var(--tg-content-safe-area-inset-top)
   );
-  --nm-safe-bottom: calc(
-    env(safe-area-inset-bottom, 0px) + var(--tg-safe-area-inset-bottom)
+  --nm-safe-bottom: max(
+    env(safe-area-inset-bottom, 0px),
+    calc(
+      var(--tg-safe-area-inset-bottom) +
+        var(--tg-content-safe-area-inset-bottom)
+    )
   );
+
+  /*
+   * Ionic коопсуз аймакты өз эрежелери менен колдонот
+   * (мис. "ion-header ion-toolbar:first-of-type"), ошондуктан ага өзүбүз
+   * эсептеген маанини беребиз — эки эсе кошулуп калбашы үчүн.
+   */
+  --ion-safe-area-top: var(--nm-safe-top);
+  --ion-safe-area-bottom: var(--nm-safe-bottom);
 
   /* --- Ionic'ке ыңгайлаштыруу --- */
   --ion-background-color: var(--nm-bg);
@@ -167,8 +187,9 @@ ion-tab-bar {
   border-top: 1px solid var(--nm-border);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  padding-bottom: var(--nm-safe-bottom);
-  height: calc(58px + var(--nm-safe-bottom));
+  /* Коопсуз аймакты Ionic өзү кошот — бийиктик ага жараша өсөт */
+  height: auto;
+  min-height: 58px;
 }
 
 ion-tab-button {

@@ -9,12 +9,19 @@
   --padding-bottom: 0;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding-top: var(--nm-safe-top);
 }
 
-/* Telegram fullscreen'де жогорку панель бийигирээк болушу керек */
-.fullscreen {
-  padding-top: calc(var(--nm-safe-top) + 8px);
+/*
+ * Fullscreen'де Telegram'дын "Жабуу" жана "..." баскычтары беттин үстүндө
+ * калкып турат. Кээ бир кардарлар contentSafeAreaInset'ти бербейт, ошондуктан
+ * аталыш алардын астында калбашы үчүн эң аз бийиктикти кепилдейбиз.
+ */
+/* Ionic'тин өз эрежесинен күчтүү болушу үчүн селектор так жазылат */
+ion-header ion-toolbar.fullscreen:first-of-type {
+  padding-top: max(
+    calc(var(--nm-safe-top) + 8px),
+    calc(var(--nm-device-top) + 48px)
+  );
 }
 
 .inner {
