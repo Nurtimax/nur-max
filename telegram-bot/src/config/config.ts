@@ -1,7 +1,6 @@
 // Бардык тексттер жана жыштык/убакыт параметрлери ушул жерде.
 export const CONFIG = {
   timezone: 'Asia/Bishkek',
-  dataFile: '.data/state.json',
 
   startMessage: 'Салам! Эскертүүлөр күйдү.',
 

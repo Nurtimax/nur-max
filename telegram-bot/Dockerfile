@@ -21,8 +21,6 @@ RUN npm ci --omit=dev && npm cache clean --force
 
 COPY --from=build /app/dist ./dist
 
-# State file (.data/state.json) lives here — mount a volume to persist it
-VOLUME ["/app/.data"]
-
-# Token is provided at runtime: --env-file .env or -e TELEGRAM_BOT_TOKEN=...
+# State lives in PostgreSQL (see docker-compose.yml) — no local volumes needed.
+# Token/db creds are provided at runtime: --env-file .env
 CMD ["node", "dist/main.js"]

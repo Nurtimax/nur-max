@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import { Logger } from '@nestjs/common';
-import { BotModule } from './bot.module';
+import { BotModule } from './bot/bot.module';
 
 async function bootstrap() {
   const app = await NestFactory.createApplicationContext(BotModule);

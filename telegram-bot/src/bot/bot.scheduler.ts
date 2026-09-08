@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { CONFIG, MealKey } from './config';
-import { StateService } from './state.service';
+import { CONFIG, MealKey } from '../config/config';
+import { StateService } from '../users/state.service';
 import { BotUpdate } from './bot.update';
 
 @Injectable()
@@ -17,14 +17,15 @@ export class BotScheduler {
   @Cron(CONFIG.wake.cron, { timeZone: CONFIG.timezone })
   async startWake() {
     const now = Date.now();
-    for (const id of this.state.allRegisteredIds()) {
-      const w = this.state.get(id).wake;
+    for (const id of await this.state.allRegisteredIds()) {
+      const user = await this.state.get(id);
+      const w = user.state.wake;
       w.done = false;
       w.sent = 1;
       w.lastSentAt = now;
       await this.bot.send(id, CONFIG.wake.message, CONFIG.wake.button, 'wake');
+      await this.state.save(user);
     }
-    this.state.save();
   }
 
   // ---- Тамактарды баштоо ----
@@ -46,23 +47,26 @@ export class BotScheduler {
   private async startMeal(meal: MealKey) {
     const cfg = CONFIG.meals[meal];
     const now = Date.now();
-    for (const id of this.state.allRegisteredIds()) {
+    for (const id of await this.state.allRegisteredIds()) {
       // Мурунку күнү бүтпей калган серияны баштапкы абалга келтирүү
-      const m = this.state.get(id)[meal];
+      const user = await this.state.get(id);
+      const m = user.state[meal];
       m.step = 'ask';
       m.sent = 1;
       m.lastSentAt = now;
       await this.bot.send(id, cfg.askMessage, cfg.ateButton, `${meal}_ate`);
+      await this.state.save(user);
     }
-    this.state.save();
   }
 
   // ---- Ар минут сайын: кайра жиберүү логикасы ----
   @Cron(CronExpression.EVERY_MINUTE)
   async tick() {
     const now = Date.now();
-    for (const id of this.state.allRegisteredIds()) {
-      const u = this.state.get(id);
+    for (const id of await this.state.allRegisteredIds()) {
+      const user = await this.state.get(id);
+      const u = user.state;
+      let changed = false;
 
       // Түшкүч: 30 мин өтүп, 4төн аз болсо кайра жибер
       const w = u.wake;
@@ -71,6 +75,7 @@ export class BotScheduler {
           w.sent += 1;
           w.lastSentAt = now;
           await this.bot.send(id, CONFIG.wake.message, CONFIG.wake.button, 'wake');
+          changed = true;
         }
       }
 
@@ -82,6 +87,7 @@ export class BotScheduler {
             m.lastSentAt = now;
             const cfg = CONFIG.meals[meal];
             await this.bot.send(id, cfg.askMessage, cfg.ateButton, `${meal}_ate`);
+            changed = true;
           }
         } else if (m.step === 'medicine') {
           if (m.sent < CONFIG.medicine.maxSent && now - m.lastSentAt >= CONFIG.medicine.intervalMin * 60_000) {
@@ -93,10 +99,14 @@ export class BotScheduler {
               m.step = 'sport';
               await this.bot.send(id, CONFIG.sport.message, CONFIG.sport.button, `${meal}_sport`);
             }
+            changed = true;
           }
         }
       }
+
+      if (changed) {
+        await this.state.save(user);
+      }
     }
-    this.state.save();
   }
 }
