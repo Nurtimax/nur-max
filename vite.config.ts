@@ -10,6 +10,15 @@ export default defineConfig({
     react(),
     legacy()
   ],
+  server: {
+    proxy: {
+      // Телеграм-боттун REST API'sи (локалдык иштетүү үчүн)
+      '/api/meals': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',

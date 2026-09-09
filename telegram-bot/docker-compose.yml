@@ -23,6 +23,9 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    ports:
+      # фронт (Netlify/локал) ушул API'га кайрылат: /api/meals/...
+      - '${PORT:-3000}:3000'
     restart: unless-stopped
 
 volumes:

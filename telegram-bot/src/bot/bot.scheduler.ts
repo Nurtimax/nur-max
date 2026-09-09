@@ -20,10 +20,11 @@ export class BotScheduler {
     for (const id of await this.state.allRegisteredIds()) {
       const user = await this.state.get(id);
       const w = user.state.wake;
+      await this.bot.deleteMessage(id, w.lastMsgId); // кээде калган мурунку эскертүүнү өчүрүү
       w.done = false;
       w.sent = 1;
       w.lastSentAt = now;
-      await this.bot.send(id, CONFIG.wake.message, CONFIG.wake.button, 'wake');
+      w.lastMsgId = await this.bot.send(id, CONFIG.wake.message, CONFIG.wake.button, 'wake');
       await this.state.save(user);
     }
   }
@@ -51,10 +52,11 @@ export class BotScheduler {
       // Мурунку күнү бүтпей калган серияны баштапкы абалга келтирүү
       const user = await this.state.get(id);
       const m = user.state[meal];
+      await this.bot.deleteMessage(id, m.lastMsgId); // кээде калган мурунку эскертүүнү өчүрүү
       m.step = 'ask';
       m.sent = 1;
       m.lastSentAt = now;
-      await this.bot.send(id, cfg.askMessage, cfg.ateButton, `${meal}_ate`);
+      m.lastMsgId = await this.bot.send(id, cfg.askMessage, cfg.ateButton, `${meal}_ate`);
       await this.state.save(user);
     }
   }
@@ -74,7 +76,8 @@ export class BotScheduler {
         if (now - w.lastSentAt >= CONFIG.wake.intervalMin * 60_000) {
           w.sent += 1;
           w.lastSentAt = now;
-          await this.bot.send(id, CONFIG.wake.message, CONFIG.wake.button, 'wake');
+          await this.bot.deleteMessage(id, w.lastMsgId);
+          w.lastMsgId = await this.bot.send(id, CONFIG.wake.message, CONFIG.wake.button, 'wake');
           changed = true;
         }
       }
@@ -86,18 +89,22 @@ export class BotScheduler {
             m.sent += 1;
             m.lastSentAt = now;
             const cfg = CONFIG.meals[meal];
-            await this.bot.send(id, cfg.askMessage, cfg.ateButton, `${meal}_ate`);
+            await this.bot.deleteMessage(id, m.lastMsgId);
+            m.lastMsgId = await this.bot.send(id, cfg.askMessage, cfg.ateButton, `${meal}_ate`);
             changed = true;
           }
         } else if (m.step === 'medicine') {
           if (m.sent < CONFIG.medicine.maxSent && now - m.lastSentAt >= CONFIG.medicine.intervalMin * 60_000) {
             m.sent += 1;
             m.lastSentAt = now;
-            await this.bot.send(id, CONFIG.medicine.message, CONFIG.medicine.button, `${meal}_med`);
+            await this.bot.deleteMessage(id, m.lastMsgId);
+            m.lastMsgId = await this.bot.send(id, CONFIG.medicine.message, CONFIG.medicine.button, `${meal}_med`);
             if (m.sent >= CONFIG.medicine.maxSent) {
               // 3-учурдагы эскертүү жиберилгендиктен, медицина аяктады -> спорт
               m.step = 'sport';
-              await this.bot.send(id, CONFIG.sport.message, CONFIG.sport.button, `${meal}_sport`);
+              m.sent = 0;
+              await this.bot.deleteMessage(id, m.lastMsgId); // медицина баскычын жашырабыз
+              m.lastMsgId = await this.bot.send(id, CONFIG.sport.message, CONFIG.sport.button, `${meal}_sport`);
             }
             changed = true;
           }

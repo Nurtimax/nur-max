@@ -4,12 +4,14 @@ export interface MealState {
   step: 'idle' | 'ask' | 'medicine' | 'sport' | 'done';
   sent: number; // бул кадамда жиберилген билдирүүлөрдүн саны
   lastSentAt: number; // timestamp (ms)
+  lastMsgId?: number; // акыркы эскертүү билдирүүсүнүн message_id (өчүрүү үчүн)
 }
 
 export interface WakeState {
   done: boolean;
   sent: number;
   lastSentAt: number;
+  lastMsgId?: number;
 }
 
 // Бул JSONB устунунда сакталат — .data/state.json мурдагы форматтын окшошу
@@ -19,6 +21,8 @@ export interface UserState {
   breakfast: MealState;
   lunch: MealState;
   dinner: MealState;
+  /** Тамактын суммасын текст менен киргизүү күтүүдө (Башка сумма баскычынан кийин) */
+  awaitingCost?: { meal: string; msgId?: number } | null;
 }
 
 export function freshUser(): UserState {

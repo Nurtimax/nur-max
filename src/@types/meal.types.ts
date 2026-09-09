@@ -49,3 +49,12 @@ export interface MealWeek {
   to: number;
   days: MealDay[];
 }
+
+/** Telegram-боттон келген иштин тамактын суммасы (фронт←бек байланышы) */
+export interface TelegramMealRecord {
+  /** YYYY-MM-DD */
+  date: string;
+  meal: "breakfast" | "lunch" | "dinner";
+  /** Сом менен */
+  cost: number;
+}

@@ -7,6 +7,9 @@ import { BotUpdate } from './bot.update';
 import { BotScheduler } from './bot.scheduler';
 import { StateService } from '../users/state.service';
 import { User } from '../users/entities/user.entity';
+import { MealRecord } from '../meals/meal-record.entity';
+import { MealsService } from '../meals/meals.service';
+import { MealsController } from '../meals/meals.controller';
 
 @Module({
   imports: [
@@ -25,7 +28,7 @@ import { User } from '../users/entities/user.entity';
         synchronize: true, // жеке бот — миграция керек эмес
       }),
     }),
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, MealRecord]),
     TelegrafModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -35,6 +38,7 @@ import { User } from '../users/entities/user.entity';
     }),
     ScheduleModule.forRoot(),
   ],
-  providers: [StateService, BotUpdate, BotScheduler],
+  controllers: [MealsController],
+  providers: [StateService, BotUpdate, BotScheduler, MealsService],
 })
 export class BotModule {}

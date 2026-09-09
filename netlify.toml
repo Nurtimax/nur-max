@@ -1,3 +1,11 @@
+# Телеграм-боттун API'sин ушул доменден прокси кылуу үчүн
+# төмөнкү жолду өз сервериңиздин дарегине алмаштырыңыз:
+# [[redirects]]
+# from = "/api/meals/*"
+# to = "https://СИЗДИН_СЕРВЕР/api/meals/:splat"
+# status = 200
+# force = true
+
 [[redirects]]
 from = "/*"
 to = "/index.html"

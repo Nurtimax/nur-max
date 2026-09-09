@@ -34,6 +34,7 @@ import QueryProvider from "./providers/QueryProvider";
 import InitializingProvider from "./providers/InitializingProvider";
 import FoodProvider from "./providers/FoodProvider";
 import TelegramProvider from "./providers/TelegramProvider";
+import TelegramMealsProvider from "./providers/TelegramMealsProvider";
 import ThemeProvider from "./providers/ThemeProvider";
 import AddExpenseSheet from "./components/budget/AddExpenseSheet";
 
@@ -44,12 +45,14 @@ const App: React.FC = () => (
     <ThemeProvider>
       <TelegramProvider>
         <QueryProvider>
-          <InitializingProvider>
-            <FoodProvider>
-              <AppRouters />
-              <AddExpenseSheet />
-            </FoodProvider>
-          </InitializingProvider>
+          <TelegramMealsProvider>
+            <InitializingProvider>
+              <FoodProvider>
+                <AppRouters />
+                <AddExpenseSheet />
+              </FoodProvider>
+            </InitializingProvider>
+          </TelegramMealsProvider>
         </QueryProvider>
       </TelegramProvider>
     </ThemeProvider>

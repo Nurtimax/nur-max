@@ -4,8 +4,12 @@ import { Logger } from '@nestjs/common';
 import { BotModule } from './bot/bot.module';
 
 async function bootstrap() {
-  const app = await NestFactory.createApplicationContext(BotModule);
+  const app = await NestFactory.create(BotModule);
+  app.setGlobalPrefix('api'); // фронт менен окшош: /api/meals/...
+  app.enableCors(); // Netlify/локал фронттук доменден сурамдар үчүн
   app.enableShutdownHooks();
-  new Logger('Bootstrap').log('Bot is running');
+  const port = parseInt(process.env.PORT ?? '3000', 10);
+  await app.listen(port);
+  new Logger('Bootstrap').log(`Bot is running, API on :${port}/api`);
 }
 bootstrap();
